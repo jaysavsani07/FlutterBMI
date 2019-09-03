@@ -76,6 +76,7 @@ class _BMIMainState extends State<BMIMain> {
                             builder: (context) => ResultPage(
                                   bmiResult: calc.calculateBMI(),
                                   resultText: calc.getResult(),
+                                  resultTextStyle: calc.resultTextStyle(calc.getResult()),
                                   interpretation: calc.getInterpretation(),
                                 )));
                   },
@@ -109,7 +110,7 @@ class _MaleState extends State<Male> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  'Age',
+                  'Age (In Year)',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       color: Color.fromRGBO(86, 81, 104, 1)),
@@ -132,7 +133,9 @@ class _MaleState extends State<Male> {
                           icon: Icon(FontAwesomeIcons.minus),
                           onPressed: () {
                             setState(() {
-                              age--;
+                              if (age > 1) {
+                                age--;
+                              }
                             });
                           },
                           color: Colors.deepPurple,
@@ -183,7 +186,7 @@ class _FemaleState extends State<Female> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text(
-                    'Weight',
+                    'Weight (Kg)',
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Color.fromRGBO(86, 81, 104, 1)),
@@ -205,7 +208,9 @@ class _FemaleState extends State<Female> {
                             icon: Icon(FontAwesomeIcons.minus),
                             onPressed: () {
                               setState(() {
-                                weight--;
+                                if (weight > 5) {
+                                  weight--;
+                                }
                               });
                             },
                             color: Colors.deepPurple,
@@ -334,7 +339,7 @@ class _GenderState extends State<Gender> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'i\'m',
+                      'I\'m',
                       style: TextStyle(
                           fontSize: 60.0,
                           fontWeight: FontWeight.w900,

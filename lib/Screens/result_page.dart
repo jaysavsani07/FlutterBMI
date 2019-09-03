@@ -1,17 +1,16 @@
-import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
 
 class ResultPage extends StatelessWidget {
   final String bmiResult;
   final String resultText;
   final String interpretation;
+  final TextStyle resultTextStyle;
 
   ResultPage(
       {@required this.bmiResult,
       @required this.resultText,
+      @required this.resultTextStyle,
       @required this.interpretation});
 
   @override
@@ -41,30 +40,41 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                        text: '',
-                        style: TextStyle(fontSize: 24, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: bmiResult.split(".")[0].toString(),
-                              style: TextStyle(
-                                fontSize: 100.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          TextSpan(
-                              text: '.' + bmiResult.split(".")[1].toString(),
-                              style: TextStyle(fontSize: 36.0, color: Colors.grey.shade600)),
-                        ]),
+                  Flex(
+                    direction: Axis.vertical,
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                            text: '',
+                            style: TextStyle(fontSize: 24, color: Colors.black),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: bmiResult.split(".")[0].toString(),
+                                  style: TextStyle(
+                                    fontSize: 100.0,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              TextSpan(
+                                  text:
+                                      '.' + bmiResult.split(".")[1].toString(),
+                                  style: TextStyle(
+                                      fontSize: 36.0,
+                                      color: Colors.grey.shade600)),
+                            ]),
+                      ),
+                      Text(
+                        'Your BMI index',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Color.fromRGBO(218, 218, 222, 1),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                   Text(
                     resultText,
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 251, 182, 1),
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 2.0,
-                      fontSize: 18.0,
-                    ),
+                    style: resultTextStyle,
                   ),
                   Text(
                     interpretation,
