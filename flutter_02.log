@@ -1,0 +1,45 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run --machine --target lib/main.dart -d 4693d1727d24 --track-widget-creation --start-paused
+
+## exception
+
+SocketException: SocketException: Write failed (OS Error: Broken pipe, errno = 32), port = 0
+
+```
+null```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel beta, v1.8.3, on Linux, locale en_IN)
+    • Flutter version 1.8.3 at /home/nividata/flutter
+    • Framework revision e4ebcdf6f4 (6 weeks ago), 2019-07-27 11:48:24 -0700
+    • Engine revision 38ac5f30a7
+    • Dart version 2.5.0 (build 2.5.0-dev.1.0 0ca1582afd)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    • Android SDK at /home/nividata/Android/Sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-29, build-tools 29.0.2
+    • Java binary at: /home/nividata/Downloads/android-studio/android-studio/jre/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+    • All Android licenses accepted.
+
+[!] Android Studio (version 3.5)
+    • Android Studio at /home/nividata/Downloads/android-studio/android-studio
+    ✗ Flutter plugin not installed; this adds Flutter specific functionality.
+    ✗ Dart plugin not installed; this adds Dart specific functionality.
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+
+[✓] VS Code (version 1.37.1)
+    • VS Code at /usr/share/code
+    • Flutter extension version 3.4.1
+
+[✓] Connected device (1 available)
+    • Redmi 4 • 4693d1727d24 • android-arm64 • Android 7.1.2 (API 25)
+
+! Doctor found issues in 1 category.
+```

@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_responsive_screen/flutter_responsive_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -22,69 +23,92 @@ class _BMIMainState extends State<BMIMain> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          centerTitle: true,
-          title: Text(
-            'BMI CALCULATOR',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-                color: Color.fromRGBO(86, 81, 104, 1),
-                fontSize: 16.0,
-                fontWeight: FontWeight.w900),
+    //   SystemChrome.setSystemUIOverlayStyle(
+    //   const SystemUiOverlayStyle(
+    //     statusBarColor: Colors.white,
+    //     systemNavigationBarColor: Colors.white,
+    //     systemNavigationBarDividerColor: Colors.black,
+    //     systemNavigationBarIconBrightness: Brightness.dark,
+    //   ),
+    // );
+
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return AnnotatedRegion(
+      child: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            centerTitle: true,
+            title: Text(
+              'BMI CALCULATOR',
+              textDirection: TextDirection.ltr,
+              style: TextStyle(
+                  color: Color.fromRGBO(86, 81, 104, 1),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w900),
+            ),
           ),
-        ),
-        body: SafeArea(
-          child: Container(
-              child: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-            child: Column(
-              children: <Widget>[
-                // Male/Female selection
-                new Container(
-                    child: new Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[new Male(), new Female()],
-                )),
-                new Height(),
-                new Gender(),
-                new Container(
-                  margin: EdgeInsets.all(20.0),
-                  child: new Text(
-                    'Calculate your Body Mass Index',
-                    style: TextStyle(
-                      color: Color.fromRGBO(218, 218, 222, 1),
-                      fontWeight: FontWeight.w600,
+          body: SafeArea(
+            child: Container(
+                child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+              child: Column(
+                children: <Widget>[
+                  // Male/Female selection
+                  new Container(
+                      child: new Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[new Male(), new Female()],
+                  )),
+                  new Height(),
+                  new Gender(),
+                  new Container(
+                    margin: EdgeInsets.all(20.0),
+                    child: new Text(
+                      'Calculate your Body Mass Index',
+                      style: TextStyle(
+                        color: Color.fromRGBO(218, 218, 222, 1),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                ),
-                new MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  color: Colors.deepPurple,
-                  minWidth: Screen(MediaQuery.of(context).size).hp(10),
-                  height: Screen(MediaQuery.of(context).size).hp(10),
-                  child: Icon(FontAwesomeIcons.solidHeart, color: Colors.white),
-                  onPressed: () {
-                    CalculatorBrain calc =
-                        CalculatorBrain(height: height, weight: weight);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ResultPage(
-                                  bmiResult: calc.calculateBMI(),
-                                  resultText: calc.getResult(),
-                                  resultTextStyle: calc.resultTextStyle(calc.getResult()),
-                                  interpretation: calc.getInterpretation(),
-                                )));
-                  },
-                )
-              ],
-            ),
+                  new MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    color: Colors.deepPurple,
+                    minWidth: Screen(MediaQuery.of(context).size).hp(10),
+                    height: Screen(MediaQuery.of(context).size).hp(10),
+                    child:
+                        Icon(FontAwesomeIcons.solidHeart, color: Colors.white),
+                    onPressed: () {
+                      CalculatorBrain calc =
+                          CalculatorBrain(height: height, weight: weight);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ResultPage(
+                                    bmiResult: calc.calculateBMI(),
+                                    resultText: calc.getResult(),
+                                    resultTextStyle:
+                                        calc.resultTextStyle(calc.getResult()),
+                                    interpretation: calc.getInterpretation(),
+                                  )));
+                    },
+                  )
+                ],
+              ),
+            )),
           )),
-        ));
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
+    );
   }
 }
 
