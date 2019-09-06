@@ -11,8 +11,8 @@ void main() {
 void updateStatusBarColor() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.deepPurple,
-      systemNavigationBarColor: Colors.deepPurple,
+      statusBarColor: Colors.white,
+      systemNavigationBarColor: Colors.white10,
       systemNavigationBarDividerColor: Colors.black,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
@@ -40,6 +40,9 @@ class MyApp extends StatelessWidget {
       ),
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
+         systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
   }

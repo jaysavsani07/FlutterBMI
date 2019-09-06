@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/Screens/bmi_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -32,9 +34,10 @@ class _SplashState extends State<Splash> {
               ),
             ),
             Container(
-              color: Colors.black26,
+              color: Colors.black54,
             ),
             Container(
+              alignment: Alignment.centerLeft,
               padding: EdgeInsets.all(40.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -47,12 +50,18 @@ class _SplashState extends State<Splash> {
                         fontSize: 24.0,
                         fontWeight: FontWeight.w500),
                   ),
-                  Text(
-                    "BMI.",
-                    style: TextStyle(
-                        color: Colors.yellow.shade100,
+                  TyperAnimatedTextKit(
+                    duration: Duration(
+                      seconds: 2,
+                    ),
+                    textAlign: TextAlign.start,
+                    alignment: AlignmentDirectional.bottomCenter,
+                    isRepeatingAnimation: false,
+                    textStyle: TextStyle(
+                        color: Colors.green.shade200,
                         fontSize: 100.0,
                         fontWeight: FontWeight.w900),
+                    text: <String>["BMI."],
                   )
                 ],
               ),
@@ -74,7 +83,7 @@ class _SplashState extends State<Splash> {
                         fontWeight: FontWeight.w800)),
                 onPressed: () {
                   setState(() {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => BMIMain()));
                   });
                 },
@@ -85,6 +94,9 @@ class _SplashState extends State<Splash> {
       ),
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
   }

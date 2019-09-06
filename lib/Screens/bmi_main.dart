@@ -23,7 +23,7 @@ class _BMIMainState extends State<BMIMain> {
 
   @override
   Widget build(BuildContext context) {
-    //   SystemChrome.setSystemUIOverlayStyle(
+    // SystemChrome.setSystemUIOverlayStyle(
     //   const SystemUiOverlayStyle(
     //     statusBarColor: Colors.white,
     //     systemNavigationBarColor: Colors.white,
@@ -32,8 +32,9 @@ class _BMIMainState extends State<BMIMain> {
     //   ),
     // );
 
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -42,7 +43,7 @@ class _BMIMainState extends State<BMIMain> {
     return AnnotatedRegion(
       child: Scaffold(
           appBar: AppBar(
-            elevation: 0.0,
+            elevation: 10.0,
             centerTitle: true,
             title: Text(
               'BMI CALCULATOR',
@@ -106,6 +107,9 @@ class _BMIMainState extends State<BMIMain> {
             )),
           )),
       value: SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
       ),
     );
