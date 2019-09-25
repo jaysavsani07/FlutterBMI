@@ -1,4 +1,6 @@
 import 'package:bmi_calculator/Screens/bmi_main.dart';
+import 'package:bmi_calculator/animations/scale_route.dart';
+import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -11,7 +13,14 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.grey,
+      systemNavigationBarIconBrightness: Brightness.dark, // navigation bar color
+      statusBarColor: Colors.white, // status bar color
+    ));
+
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -82,10 +91,7 @@ class _SplashState extends State<Splash> {
                         color: Colors.deepPurple,
                         fontWeight: FontWeight.w800)),
                 onPressed: () {
-                  setState(() {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => BMIMain()));
-                  });
+                  Navigator.pushReplacement(  context, SizeRoute(page: BMIMain()));
                 },
               ),
             ),

@@ -1,4 +1,8 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
+import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
+import 'package:bmi_calculator/Utilities/theme_handler.dart';
+import 'package:bmi_calculator/animations/animate_button.dart';
+import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_responsive_screen/flutter_responsive_screen.dart';
@@ -18,8 +22,35 @@ class BMIMain extends StatefulWidget {
   _BMIMainState createState() => _BMIMainState();
 }
 
-class _BMIMainState extends State<BMIMain> {
+class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
+  var btnVisibility = 1.0;
   GenderEnum selectedGender;
+  Icon icon = Icon(FontAwesomeIcons.solidSun);
+
+  void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
+    CustomTheme.instanceOf(buildContext).changeTheme(key);
+  }
+
+  AnimationController _controller;
+
+  @override
+  initState() {
+    super.initState();
+    isDarkTheme = false;
+
+    _controller = new AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    )..repeat(
+      reverse: true
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,67 +74,123 @@ class _BMIMainState extends State<BMIMain> {
     return AnnotatedRegion(
       child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Theme.of(context).primaryColorDark,
             elevation: 10.0,
             centerTitle: true,
             title: Text(
               'BMI CALCULATOR',
               textDirection: TextDirection.ltr,
               style: TextStyle(
-                  color: Color.fromRGBO(86, 81, 104, 1),
+                  color: Theme.of(context).accentColor,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w900),
             ),
+            actions: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
+                height: MediaQuery.of(context).size.height,
+                child: IconButton(
+                  icon: icon,
+                  onPressed: () {
+                    setState(() {
+                      if (isDarkTheme) {
+                        isDarkTheme = false;
+                        icon = Icon(FontAwesomeIcons.solidMoon);
+                        _changeTheme(context, MyThemeKeys.LIGHT);
+                        
+                      } else {
+                        isDarkTheme = true;
+                        icon = Icon(FontAwesomeIcons.solidSun);
+                        _changeTheme(context, MyThemeKeys.DARKER);
+                        
+                      }
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
+          // drawer: Drawer(),
           body: SafeArea(
             child: Container(
-                child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-              child: Column(
-                children: <Widget>[
-                  // Male/Female selection
-                  new Container(
-                      child: new Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[new Male(), new Female()],
-                  )),
-                  new Height(),
-                  new Gender(),
-                  new Container(
-                    margin: EdgeInsets.all(20.0),
-                    child: new Text(
-                      'Calculate your Body Mass Index',
-                      style: TextStyle(
-                        color: Color.fromRGBO(218, 218, 222, 1),
-                        fontWeight: FontWeight.w600,
+                child: Stack(
+              children: <Widget>[
+                SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 74.0),
+                  child: Column(
+                    children: <Widget>[
+                      // Male/Female selection
+                      new Container(
+                          child: new Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[new Male(), new Female()],
+                      )),
+                      new Height(),
+                      new Gender(),
+                    ],
+                  ),
+                ),
+                AnimatedLoader(
+                  animation: _controller,
+                  // alignment: FractionalOffset.center,
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
+                    alignment: Alignment.bottomCenter,
+                    child: MaterialButton(
+                      child: Text(
+                        'Calculate'.toUpperCase(),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            letterSpacing: 1),
                       ),
+                      color: Color.fromRGBO(179,157,219, 0.4),
+                      elevation: 0.0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      minWidth: 215.0,
+                      height: 62.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () {},
                     ),
                   ),
-                  new MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.all(11.0),
+                  child: MaterialButton(
+                    child: Text(
+                      'Calculate'.toUpperCase(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                          letterSpacing: 1),
+                    ),
                     color: Colors.deepPurple,
-                    minWidth: Screen(MediaQuery.of(context).size).hp(10),
-                    height: Screen(MediaQuery.of(context).size).hp(10),
-                    child:
-                        Icon(FontAwesomeIcons.solidHeart, color: Colors.white),
+                    elevation: 10.0,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    minWidth: 200.0,
+                    height: 50.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () {
                       CalculatorBrain calc =
                           CalculatorBrain(height: height, weight: weight);
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ResultPage(
-                                    bmiResult: calc.calculateBMI(),
-                                    resultText: calc.getResult(),
-                                    resultTextStyle:
-                                        calc.resultTextStyle(calc.getResult()),
-                                    interpretation: calc.getInterpretation(),
-                                  )));
+                          SizeRoute(
+                              page: ResultPage(
+                            bmiResult: calc.calculateBMI(),
+                            resultText: calc.getResult(),
+                            resultTextStyle:
+                                calc.resultTextStyle(calc.getResult()),
+                            interpretation: calc.getInterpretation(),
+                          )));
                     },
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             )),
           )),
       value: SystemUiOverlayStyle(
@@ -122,12 +209,43 @@ class Male extends StatefulWidget {
 }
 
 class _MaleState extends State<Male> {
+  void decreseAge() async {
+    if (loopActive) return;
+
+    loopActive = true;
+
+    while (buttonPressed) {
+      setState(() {
+        if (age > 1) {
+          age--;
+        }
+      });
+      await Future.delayed(Duration(milliseconds: 100));
+      decreseAge();
+    }
+    loopActive = false;
+  }
+
+  void increseAge() async {
+    if (loopActive) return;
+
+    loopActive = true;
+
+    while (buttonPressed) {
+      setState(() {
+        age++;
+      });
+      await Future.delayed(Duration(milliseconds: 100));
+      increseAge();
+    }
+    loopActive = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Card(
         elevation: 2.0,
-        color: Color.fromRGBO(255, 255, 255, 1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: SizedBox.fromSize(
           size: Size(160, 200),
@@ -141,46 +259,66 @@ class _MaleState extends State<Male> {
                   'Age (In Year)',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(86, 81, 104, 1)),
+                      color: Theme.of(context).accentColor),
                 ),
                 Text(
                   age.toString(),
                   style: TextStyle(
                       fontSize: 60.0,
                       fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(86, 81, 104, 1)),
+                      color: Theme.of(context).accentColor),
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: Colors.grey.shade200,
-                        child: IconButton(
-                          icon: Icon(FontAwesomeIcons.minus),
-                          onPressed: () {
-                            setState(() {
-                              if (age > 1) {
-                                age--;
-                              }
-                            });
-                          },
-                          color: Colors.deepPurple,
+                      GestureDetector(
+                        child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Theme.of(context).buttonColor,
+                          child: IconButton(
+                            icon: Icon(FontAwesomeIcons.minus,
+                                color: Theme.of(context).iconTheme.color),
+                            onPressed: () {
+                              setState(() {
+                                if (age > 1) {
+                                  age--;
+                                }
+                              });
+                            },
+                            color: Colors.deepPurple,
+                          ),
                         ),
+                        onLongPressStart: (details) {
+                          buttonPressed = true;
+                          decreseAge();
+                        },
+                        onLongPressUp: () {
+                          buttonPressed = false;
+                        },
                       ),
-                      CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: Colors.grey.shade200,
-                        child: IconButton(
-                          icon: Icon(FontAwesomeIcons.plus),
-                          onPressed: () {
-                            setState(() {
-                              age++;
-                            });
-                          },
-                          color: Colors.deepPurple,
+                      GestureDetector(
+                        child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Theme.of(context).buttonColor,
+                          child: IconButton(
+                            icon: Icon(FontAwesomeIcons.plus,
+                                color: Theme.of(context).iconTheme.color),
+                            onPressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                            color: Colors.deepPurple,
+                          ),
                         ),
+                        onLongPressStart: (details) {
+                          buttonPressed = true;
+                          increseAge();
+                        },
+                        onLongPressUp: () {
+                          buttonPressed = false;
+                        },
                       )
                     ])
               ],
@@ -198,12 +336,43 @@ class Female extends StatefulWidget {
 }
 
 class _FemaleState extends State<Female> {
+  void decreseWeight() async {
+    if (loopActive) return;
+
+    loopActive = true;
+
+    while (buttonPressed) {
+      setState(() {
+        if (age > 1) {
+          weight--;
+        }
+      });
+      await Future.delayed(Duration(milliseconds: 100));
+      decreseWeight();
+    }
+    loopActive = false;
+  }
+
+  void increseWeight() async {
+    if (loopActive) return;
+
+    loopActive = true;
+
+    while (buttonPressed) {
+      setState(() {
+        weight++;
+      });
+      await Future.delayed(Duration(milliseconds: 100));
+      increseWeight();
+    }
+    loopActive = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Card(
         elevation: 2.0,
-        color: Color.fromRGBO(255, 255, 255, 1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: SizedBox.fromSize(
             size: Size(160, 200),
@@ -217,45 +386,65 @@ class _FemaleState extends State<Female> {
                     'Weight (Kg)',
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
-                        color: Color.fromRGBO(86, 81, 104, 1)),
+                        color: Theme.of(context).accentColor),
                   ),
                   Text(
                     weight.toString(),
                     style: TextStyle(
                         fontSize: 60.0,
                         fontWeight: FontWeight.w900,
-                        color: Color.fromRGBO(86, 81, 104, 1)),
+                        color: Theme.of(context).accentColor),
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 20.0,
-                          backgroundColor: Colors.grey.shade200,
-                          child: IconButton(
-                            icon: Icon(FontAwesomeIcons.minus),
-                            onPressed: () {
-                              setState(() {
-                                if (weight > 5) {
-                                  weight--;
-                                }
-                              });
-                            },
-                            color: Colors.deepPurple,
+                        GestureDetector(
+                          child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: Theme.of(context).buttonColor,
+                            child: IconButton(
+                              icon: Icon(FontAwesomeIcons.minus,
+                                  color: Theme.of(context).iconTheme.color),
+                              onPressed: () {
+                                setState(() {
+                                  if (weight > 5) {
+                                    weight--;
+                                  }
+                                });
+                              },
+                              color: Colors.deepPurple,
+                            ),
                           ),
+                          onLongPressStart: (details) {
+                            buttonPressed = true;
+                            decreseWeight();
+                          },
+                          onLongPressUp: () {
+                            buttonPressed = false;
+                          },
                         ),
-                        CircleAvatar(
-                          radius: 20.0,
-                          backgroundColor: Colors.grey.shade200,
-                          child: IconButton(
-                            icon: Icon(FontAwesomeIcons.plus),
-                            onPressed: () {
-                              setState(() {
-                                weight++;
-                              });
-                            },
-                            color: Colors.deepPurple,
+                        GestureDetector(
+                          child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: Theme.of(context).buttonColor,
+                            child: IconButton(
+                              icon: Icon(FontAwesomeIcons.plus,
+                                  color: Theme.of(context).iconTheme.color),
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              color: Colors.deepPurple,
+                            ),
                           ),
+                          onLongPressStart: (details) {
+                            buttonPressed = true;
+                            increseWeight();
+                          },
+                          onLongPressUp: () {
+                            buttonPressed = false;
+                          },
                         )
                       ])
                 ],
@@ -278,7 +467,6 @@ class _HeightState extends State<Height> {
       margin: EdgeInsets.fromLTRB(6.0, 5.0, 6.0, 0.0),
       child: Card(
         elevation: 2.0,
-        color: Color.fromRGBO(255, 255, 255, 1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
             padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
@@ -291,7 +479,7 @@ class _HeightState extends State<Height> {
                   'Height',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(86, 81, 104, 1)),
+                      color: Theme.of(context).accentColor),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -300,7 +488,10 @@ class _HeightState extends State<Height> {
                   children: <Widget>[
                     Text(
                       height.toString(),
-                      style: kNumberTextStyle,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.w900),
                     ),
                     Text(
                       'cm',
@@ -347,7 +538,6 @@ class _GenderState extends State<Gender> {
       margin: EdgeInsets.fromLTRB(6.0, 5.0, 6.0, 0.0),
       child: Card(
         elevation: 2.0,
-        color: Color.fromRGBO(255, 255, 255, 1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
           padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
@@ -361,7 +551,7 @@ class _GenderState extends State<Gender> {
                 'Gender',
                 style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    color: Color.fromRGBO(86, 81, 104, 1)),
+                    color: Theme.of(context).accentColor),
               ),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -371,13 +561,13 @@ class _GenderState extends State<Gender> {
                       style: TextStyle(
                           fontSize: 60.0,
                           fontWeight: FontWeight.w900,
-                          color: Color.fromRGBO(86, 81, 104, 1)),
+                          color: Theme.of(context).accentColor),
                     ),
                     Text(
                       'Female',
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          color: Color.fromRGBO(86, 81, 104, 1)),
+                          color: Theme.of(context).accentColor),
                     ),
                     Switch(
                       value: isSwitched,
@@ -395,7 +585,7 @@ class _GenderState extends State<Gender> {
                       'Male',
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          color: Color.fromRGBO(86, 81, 104, 1)),
+                          color: Theme.of(context).accentColor),
                     ),
                   ])
             ],

@@ -2,8 +2,17 @@ import 'package:bmi_calculator/Screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'Global Variables/globals.dart';
+import 'Utilities/my_theme_keys.dart';
+import 'Utilities/theme_handler.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(
+    CustomTheme(
+      initialThemeKey: MyThemeKeys.LIGHT,
+      child: MyApp(),
+    ),
+  );
   updateStatusBarColor();
 }
 
@@ -20,6 +29,7 @@ void updateStatusBarColor() {
 }
 
 class MyApp extends StatelessWidget {
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -27,20 +37,17 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     return AnnotatedRegion(
       child: MaterialApp(
         title: 'BMI',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Color.fromRGBO(255, 255, 255, 1),
-          scaffoldBackgroundColor: Color.fromRGBO(247, 247, 255, 1),
-        ),
+        theme: CustomTheme.of(context),
         home: Splash(),
       ),
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-         systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarDividerColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),

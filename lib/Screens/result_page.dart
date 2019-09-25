@@ -19,11 +19,12 @@ class ResultPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColorDark,
         title: Text(
           'BMI CALCULATOR',
           textDirection: TextDirection.ltr,
-          style: TextStyle(
-              color: Color.fromRGBO(86, 81, 104, 1),
+          style: TextStyle( 
+              color: Theme.of(context).accentColor,
               fontSize: 16.0,
               fontWeight: FontWeight.w900),
         ),
@@ -35,7 +36,7 @@ class ResultPage extends StatelessWidget {
           Expanded(
             flex: 2,
             child: ReusableCard(
-              color: Colors.white,
+              color: Theme.of(context).cardTheme.color,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,6 +52,7 @@ class ResultPage extends StatelessWidget {
                               TextSpan(
                                   text: bmiResult.split(".")[0].toString(),
                                   style: TextStyle(
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 100.0,
                                     fontWeight: FontWeight.bold,
                                   )),
@@ -80,7 +82,7 @@ class ResultPage extends StatelessWidget {
                     interpretation,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromRGBO(86, 81, 104, 1),
+                        color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w700),
                   ),
                   MaterialButton(
@@ -90,7 +92,7 @@ class ResultPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30)),
                     color: Colors.deepPurple,
                     child: Text(
-                      "Re-Calculate",
+                      "Re-Calculate".toUpperCase(),
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
