@@ -109,7 +109,7 @@ This application built [Flutter](https://flutter.dev/). Flutter is cross-platfor
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/Fenil-Nividata/FlutterBMI/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
