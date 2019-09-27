@@ -142,12 +142,12 @@ Contact: [LinkedIn](https://www.linkedin.com/in/fenilpatel23/)
 <!-- ACKNOWLEDGEMENTS -->
 ## This app using following awesome open source libraries
 
-* [Flutter Responsive Screen](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Font Awesome Flutter](https://shields.io)
-* [Animated Text Kit](https://choosealicense.com)
-* [Dynamic Theme](https://pages.github.com)
-* [Shared Preferences](https://daneden.github.io/animate.css)
-* [Flutter Launcher Icons](https://connoratherton.com/loaders)
+* [Flutter Responsive Screen](https://pub.dev/packages/flutter_responsive_screen)
+* [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
+* [Animated Text Kit](https://pub.dev/packages/animated_text_kit)
+* [Dynamic Theme](https://pub.dev/packages/dynamic_theme)
+* [Shared Preferences](https://pub.dev/packages/shared_preferences)
+* [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -164,5 +164,5 @@ Contact: [LinkedIn](https://www.linkedin.com/in/fenilpatel23/)
 [license-url]: https://github.com/Fenil-Nividata/FlutterBMI/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://in.linkedin.com/company/nividataconsultancy
-[product-screenshot]: images/banner.jpeg
+[product-screenshot]: https://github.com/Fenil-Nividata/FlutterBMI/blob/master/banner_new3.jpg
 
