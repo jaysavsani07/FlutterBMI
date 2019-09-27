@@ -7,10 +7,10 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+[![Contributors][contributors-shield]][https://github.com/Fenil-Nividata/FlutterBMI/graphs/contributors]
+[![Forks][forks-shield]][https://github.com/Fenil-Nividata/FlutterBMI/network/members]
+[![Stargazers][stars-shield]][https://github.com/Fenil-Nividata/FlutterBMI/stargazers]
+[![Issues][issues-shield]][https://github.com/Fenil-Nividata/FlutterBMI/issues]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -128,7 +128,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/Fenil-Nividata/FlutterBMI/blob/master/LICENSE) for more information.
 
 
 
