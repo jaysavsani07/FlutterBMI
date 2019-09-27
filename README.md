@@ -41,11 +41,6 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -53,77 +48,68 @@
 * [Acknowledgements](#acknowledgements)
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+## What is BMI?
+Body Mass Index(BMI) is value derived from person's weight and height. The result of BMI measurement can give an idea about weather a person has correct weight for
+their height.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+## How to Calculate BMI?
+BMI calculation is based on simple formula using person's weight and height.
+The formula for BMI = kg/m2 where kg is person's weight in kilograms and m2 is their height in meters squared. In simplified format it would be
+BMI = (Weight in Kilograms)/(Height in meters * Height in meters)
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
+For example if person's weight is 68kg and height is 172cm then
+BMI = 68/(1.72*2) = 23
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+BMI calculator indicate whether person falls under healthy weight, underweight or overweight. If person's BMI is out of healthy range, their health
+risk may significantly increases.
+
+BMI Range for adults
+BMI : weight status
+Below 18.5 : Underweight
+18.5 – 24.9 : Normal or Healthy Weight
+25.0 - 29.9 : Overweight
+30.0 & above: Obese
+
+## Doctors uses BMI too for
+evalution for diet and physical acitivty
+cadiovascular disease and other health related problems
+measure fat in body
+
+## Health risks for extra weight
+raises blood pressure and cholesterol and triglyceride levels
+it can make diabetes and other health problems
+hypertension or high blood pressure
+type 2 diabetes
+coronary heart disease
+gallbladder disease
+osteoarthritis
+sleep apnea and respiratory problems
+
+## Health risks for under weight
+malnutrition, anemia or vitamin deficiencies
+osteoporosis from too little vitamin D and calcium
+Decreased Immune System
+fertility issues caused by irregular menstrual cycles
+growth and development issues in children and teenagers
+
+## Who shouldn't use a BMI calculator
+BMI should not be used for muscle builders, athletes, pregnant women, the elderly or young children.
+This is because BMI does not take into account whether the weight is carried as muscle or fat it's just the number. Those with a higher muscle mass, such as athletes, may have a high BMI but not be at greater health risk. Those with a lower muscle mass, such as children who have not completed their growth or the elderly who may be losing some muscle mass may have a lower BMI.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https:://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+This application built * [Flutter](https://flutter.dev/). Flutter is cross-platform open source mobile framework built by Google. Flutter use Dart as a primary language which is highly scalable and easy codebase.
+* [Getting started with Flutter](https://flutter.dev/docs).
+* [Dart](https://dart.dev/)
 
 <!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
 
 
 <!-- CONTRIBUTING -->
