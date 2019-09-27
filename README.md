@@ -19,23 +19,19 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Fenil-Nividata/FlutterBMI/blob/master/">
+    <img src="ic_launcher.png">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">BMI Calculator</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://play.google.com/store/apps/details?id=com.nividata.bmi_calculator&hl=en">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Fenil-Nividata/FlutterBMI/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/Fenil-Nividata/FlutterBMI/issues">Request Feature</a>
   </p>
 </p>
 
