@@ -4,7 +4,6 @@ enum Gender {
   Male,
   Female,
 }
-
 int age = 18;
 
 bool buttonPressed = false;

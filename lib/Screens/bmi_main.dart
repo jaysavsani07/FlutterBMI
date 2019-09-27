@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
 import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
+import 'package:bmi_calculator/Utilities/shared_preference_handler.dart';
 import 'package:bmi_calculator/Utilities/theme_handler.dart';
 import 'package:bmi_calculator/animations/animate_button.dart';
 import 'package:bmi_calculator/animations/size_transition.dart';
@@ -54,14 +55,14 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(
-    //   const SystemUiOverlayStyle(
-    //     statusBarColor: Colors.white,
-    //     systemNavigationBarColor: Colors.white,
-    //     systemNavigationBarDividerColor: Colors.black,
-    //     systemNavigationBarIconBrightness: Brightness.dark,
-    //   ),
-    // );
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarDividerColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
 
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
@@ -97,12 +98,12 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
                         isDarkTheme = false;
                         icon = Icon(FontAwesomeIcons.solidMoon);
                         _changeTheme(context, MyThemeKeys.LIGHT);
-                        
-                      } else {
+                        SharedPreference.setStringValue(SharedPreference.selectedTheme, MyThemeKeys.LIGHT.toString());
+                      } else {  
                         isDarkTheme = true;
                         icon = Icon(FontAwesomeIcons.solidSun);
                         _changeTheme(context, MyThemeKeys.DARKER);
-                        
+                        SharedPreference.setStringValue(SharedPreference.selectedTheme, MyThemeKeys.DARKER.toString());
                       }
                     });
                   },
@@ -135,13 +136,13 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
                   animation: _controller,
                   // alignment: FractionalOffset.center,
                   child: Container(
-                    margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
+                    margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
                     alignment: Alignment.bottomCenter,
                     child: MaterialButton(
                       child: Text(
                         'Calculate'.toUpperCase(),
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFF013487), 
                             fontSize: 16.0,
                             letterSpacing: 1),
                       ),
@@ -158,6 +159,7 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
                 ),
                 Container(
                   alignment: Alignment.bottomCenter,
+                  margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
                   padding: EdgeInsets.all(11.0),
                   child: MaterialButton(
                     child: Text(
@@ -168,7 +170,7 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
                           letterSpacing: 1),
                     ),
                     color: Colors.deepPurple,
-                    elevation: 10.0,
+                    elevation: 2.0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     minWidth: 200.0,
                     height: 50.0,

@@ -13,12 +13,6 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarDividerColor: Colors.grey,
-      systemNavigationBarIconBrightness: Brightness.dark, // navigation bar color
-      statusBarColor: Colors.white, // status bar color
-    ));
 
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -91,7 +85,7 @@ class _SplashState extends State<Splash> {
                         color: Colors.deepPurple,
                         fontWeight: FontWeight.w800)),
                 onPressed: () {
-                  Navigator.pushReplacement(  context, SizeRoute(page: BMIMain()));
+                  Navigator.pushReplacement(context, SizeRoute(page: BMIMain()));
                 },
               ),
             ),
