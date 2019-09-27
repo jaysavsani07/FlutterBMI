@@ -164,5 +164,5 @@ Contact: [LinkedIn](https://www.linkedin.com/in/fenilpatel23/)
 [license-url]: https://github.com/Fenil-Nividata/FlutterBMI/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://in.linkedin.com/company/nividataconsultancy
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/banner.jpeg
 
