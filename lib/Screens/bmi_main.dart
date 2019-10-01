@@ -28,10 +28,6 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
   GenderEnum selectedGender;
   Icon icon = Icon(FontAwesomeIcons.solidSun);
 
-  void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
-    CustomTheme.instanceOf(buildContext).changeTheme(key);
-  }
-
   AnimationController _controller;
 
   @override
@@ -74,43 +70,6 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
 
     return AnnotatedRegion(
       child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColorDark,
-            elevation: 10.0,
-            centerTitle: true,
-            title: Text(
-              'BMI CALCULATOR',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w900),
-            ),
-            actions: <Widget>[
-              Container(
-                padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
-                height: MediaQuery.of(context).size.height,
-                child: IconButton(
-                  icon: icon,
-                  onPressed: () {
-                    setState(() {
-                      if (isDarkTheme) {
-                        isDarkTheme = false;
-                        icon = Icon(FontAwesomeIcons.solidMoon);
-                        _changeTheme(context, MyThemeKeys.LIGHT);
-                        SharedPreference.setStringValue(SharedPreference.selectedTheme, MyThemeKeys.LIGHT.toString());
-                      } else {  
-                        isDarkTheme = true;
-                        icon = Icon(FontAwesomeIcons.solidSun);
-                        _changeTheme(context, MyThemeKeys.DARKER);
-                        SharedPreference.setStringValue(SharedPreference.selectedTheme, MyThemeKeys.DARKER.toString());
-                      }
-                    });
-                  },
-                ),
-              ),
-            ],
-          ),
           // drawer: Drawer(),
           body: SafeArea(
             child: Container(

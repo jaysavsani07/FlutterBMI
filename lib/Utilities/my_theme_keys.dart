@@ -17,7 +17,7 @@ class MyThemes {
 
   static final ThemeData darkerTheme = ThemeData(
     primaryColor: Colors.black,
-    primaryColorDark: Colors.black12,
+    primaryColorDark: Colors.black87,
     buttonColor: Colors.grey.shade700,    
     brightness: Brightness.dark,
     accentColor: Colors.white60,

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
+import 'drawer_menu.dart';
+
 class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
@@ -85,7 +87,7 @@ class _SplashState extends State<Splash> {
                         color: Colors.deepPurple,
                         fontWeight: FontWeight.w800)),
                 onPressed: () {
-                  Navigator.pushReplacement(context, SizeRoute(page: BMIMain()));
+                  Navigator.pushReplacement(context, SizeRoute(page: DrawerMenu()));
                 },
               ),
             ),
