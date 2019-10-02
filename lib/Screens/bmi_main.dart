@@ -1,7 +1,4 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
-import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
-import 'package:bmi_calculator/Utilities/shared_preference_handler.dart';
-import 'package:bmi_calculator/Utilities/theme_handler.dart';
 import 'package:bmi_calculator/animations/animate_button.dart';
 import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +50,7 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
+        // statusBarColor: Colors.white,
         systemNavigationBarColor: Colors.black,
         systemNavigationBarDividerColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.dark,

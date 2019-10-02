@@ -2,15 +2,18 @@ import 'package:bmi_calculator/Global%20Variables/globals.dart';
 import 'package:bmi_calculator/Screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_version/get_version.dart';
 
 import 'Utilities/my_theme_keys.dart';
 import 'Utilities/shared_preference_handler.dart';
 import 'Utilities/theme_handler.dart';
-import 'package:drawerbehavior/drawerbehavior.dart';
+
+import 'constants.dart';
 
 void main() {
   getTheme();
   updateStatusBarColor();
+  getAppVersionName();
 }
 
 /* Method for change Statusbar color*/
@@ -21,6 +24,14 @@ void updateStatusBarColor() {
   ));
 }
 
+void getAppVersionName() async {
+    try {
+      platformVersion = await GetVersion.projectVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+  }
+  
 void getTheme() async {
   var key =
       await SharedPreference.getStringValue(SharedPreference.selectedTheme);

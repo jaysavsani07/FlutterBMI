@@ -16,6 +16,10 @@ dependencies:
   dynamic_theme: ^1.0.1
   shared_preferences: ^0.5.3+4
   drawerbehavior: ^0.0.8
+  share: ^0.6.2+1
+  launch_review: ^2.0.0
+  url_launcher: ^5.1.4
+  get_version: ^0.1.0
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
@@ -36,3 +40,9 @@ flutter:
     - Assets/Images/ic_launcher.png
     - Assets/Images/fitmen.jpg
     - Assets/Images/icon.png
+    - Assets/Images/banner.jpg
+
+  fonts:
+    - family: GoogleSans
+      fonts:
+        - asset: Assets/fonts/GoogleSansRegular.ttf

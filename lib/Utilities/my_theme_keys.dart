@@ -4,6 +4,7 @@ enum MyThemeKeys { LIGHT, DARK, DARKER }
 
 class MyThemes {
   static final ThemeData lightTheme = ThemeData(
+    fontFamily: 'GoogleSansRegular',
     primaryColor: Colors.white,
     primaryColorDark: Colors.white,
     buttonColor: Colors.grey.shade200,

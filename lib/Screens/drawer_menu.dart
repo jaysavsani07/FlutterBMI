@@ -1,14 +1,18 @@
-import 'dart:math';
-
 import 'package:bmi_calculator/Global%20Variables/globals.dart';
+import 'package:bmi_calculator/Screens/about.dart';
 import 'package:bmi_calculator/Screens/bmi_main.dart';
+import 'package:bmi_calculator/Screens/settings.dart';
+import 'package:bmi_calculator/Utilities/app_util.dart';
 import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
 import 'package:bmi_calculator/Utilities/shared_preference_handler.dart';
 import 'package:bmi_calculator/Utilities/theme_handler.dart';
+import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:drawerbehavior/drawer_scaffold.dart';
 import 'package:drawerbehavior/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerMenu extends StatefulWidget {
   @override
@@ -16,7 +20,10 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-  Icon icon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38,);
+  Icon icon = Icon(
+    FontAwesomeIcons.solidMoon,
+    color: Colors.black38,
+  );
   void getTheme() async {
     var key =
         await SharedPreference.getStringValue(SharedPreference.selectedTheme);
@@ -42,26 +49,16 @@ class _DrawerMenuState extends State<DrawerMenu> {
 
   final menu = new Menu(
     items: [
-      new MenuItem(
-        id: 'setting',
-        title: 'SETTINGS',
-      ),
-      new MenuItem(
-        id: 'other1',
-        title: 'ABOUT US',
-      ),
-      new MenuItem(
-        id: 'other2',
-        title: 'SHARE',
-      ),
-      new MenuItem(
-        id: 'other3',
-        title: 'RATE US',
-      ),
+      new MenuItem(id: 'home', title: 'Home'),
+      new MenuItem(id: 'setting', title: 'Settings'),
+      new MenuItem(id: 'aboutapp', title: 'About Us'),
+      new MenuItem(id: 'share', title: 'Share App'),
+      new MenuItem(id: 'rateus', title: 'Rate App'),
+      new MenuItem(id: 'feedback', title: 'Feedback')
     ],
   );
 
-  var selectedMenuItemId = 'setting';
+  var selectedMenuItemId = 'home';
   var _widget = Text("1");
 
   Widget headerView(BuildContext context) {
@@ -72,15 +69,12 @@ class _DrawerMenuState extends State<DrawerMenu> {
         children: <Widget>[
           SizedBox(height: 20),
           Image(
-            image: AssetImage("Assets/Images/ic_launcher.png"),
-            filterQuality: FilterQuality.high,
-            width: 100.0,
-            height: 100.0,
-          ),
-          Text(
-            " BMI.",
-            style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
-          )
+              image: AssetImage("Assets/Images/ic_launcher.png"),
+              filterQuality: FilterQuality.high,
+              width: 100.0,
+              height: 100.0),
+          Text(" BMI.",
+              style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold))
         ],
       ),
     );
@@ -108,29 +102,43 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Text(
                 "  By",
                 style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w600),
-              ),
+              )
             ],
           ),
           Text(""),
-          Row(
-            children: <Widget>[
-              CircleAvatar(
-                radius: 20.0,
-                backgroundImage: AssetImage("Assets/Images/icon.png"),
-              ),
-              Text(
-                "  NiviData\n  Consultancy",
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-              )
-            ],
+          GestureDetector(
+            child: Row(
+              children: <Widget>[
+                CircleAvatar(
+                    radius: 20.0,
+                    backgroundImage: AssetImage("Assets/Images/icon.png")),
+                Text("  NiviData\n  Consultancy",
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))
+              ],
+            ),
+            onTap: () {
+              _launchURL();
+            },
           ),
         ],
       ),
     );
   }
 
+  _launchURL() async {
+    const url = 'https://nividata.com';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    setState(() => _widget = Text("default"));
+
     return new DrawerScaffold(
       percentage: .8,
       cornerRadius: 20,
@@ -141,14 +149,12 @@ class _DrawerMenuState extends State<DrawerMenu> {
           backgroundColor: Theme.of(context).primaryColorDark,
           elevation: 1.0,
           centerTitle: true,
-          title: Text(
-            'BMI CALCULATOR',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w900),
-          ),
+          title: Text('BMI CALCULATOR',
+              textDirection: TextDirection.ltr,
+              style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w900)),
           actions: <Widget>[
             Container(
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
@@ -176,7 +182,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   });
                 },
               ),
-            ),
+            )
           ]),
       menuView: new MenuView(
         menu: menu,
@@ -187,10 +193,35 @@ class _DrawerMenuState extends State<DrawerMenu> {
         selectedItemId: selectedMenuItemId,
         onMenuItemSelected: (String itemId) {
           selectedMenuItemId = itemId;
-          if (itemId == 'setting') {
-            setState(() => _widget = Text("1"));
-          } else {
-            setState(() => _widget = Text("default"));
+          switch (itemId) {
+            case 'home':
+              setState(() => _widget = Text("1"));
+              break;
+            case 'setting':
+              Navigator.push(context, SizeRoute(page: Settings()));
+              setState(() => _widget = Text("default"));
+              break;
+            case 'aboutapp':
+              Navigator.push(context, SizeRoute(page: AboutUS()));
+              setState(() => _widget = Text("default"));
+              break;
+            case 'share':
+              AppUtil.onShareTap(context);
+              setState(() => _widget = Text("default"));
+              break;
+            case 'rateus':
+              LaunchReview.launch();
+              setState(() => _widget = Text("default"));
+              break;
+            case 'feedback':
+              var emailUrl = mailTo;
+              var out = Uri.encodeFull(emailUrl);
+              launchURL(out);
+              setState(() => _widget = Text("default"));
+              break;
+            default:
+              setState(() => _widget = Text("default"));
+              break;
           }
         },
       ),
@@ -199,5 +230,13 @@ class _DrawerMenuState extends State<DrawerMenu> {
         color: Colors.white,
       ),
     );
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
