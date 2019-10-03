@@ -139,7 +139,7 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
                           context,
                           SizeRoute(
                               page: ResultPage(
-                            bmiResult: calc.calculateBMI(),
+                                Result: calc.calculateBMI(),
                             resultText: calc.getResult(),
                             resultTextStyle:
                                 calc.resultTextStyle(calc.getResult()),

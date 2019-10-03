@@ -73,8 +73,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
               filterQuality: FilterQuality.high,
               width: 100.0,
               height: 100.0),
-          Text(" BMI.",
-              style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold))
+          Text("  BMI.",
+              style: TextStyle(color: Colors.white, fontSize: 34.0, fontWeight: FontWeight.bold))
         ],
       ),
     );
@@ -92,7 +92,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
             children: <Widget>[
               Text(
                 "Built with  ",
-                style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.w600),
               ),
               Icon(
                 FontAwesomeIcons.solidHeart,
@@ -101,7 +104,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ),
               Text(
                 "  By",
-                style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.w600),
               )
             ],
           ),
@@ -113,8 +119,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
                     radius: 20.0,
                     backgroundImage: AssetImage("Assets/Images/icon.png")),
                 Text("  NiviData\n  Consultancy",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold))
               ],
             ),
             onTap: () {
@@ -189,7 +197,15 @@ class _DrawerMenuState extends State<DrawerMenu> {
         headerView: headerView(context),
         footerView: footerView(context),
         animation: true,
-        color: Theme.of(context).primaryColorDark,
+        padding: EdgeInsets.fromLTRB(40.0, 16.0, 0.0, 10.0),
+        color: Colors.black87,
+        background: DecorationImage(
+            image: AssetImage("Assets/Images/fitmen.jpg"),
+            colorFilter: ColorFilter.mode(Colors.white54, BlendMode.dstOut),
+            fit: BoxFit.cover),
+        selectorColor: Color.fromRGBO(67,193,152, 1),
+        textStyle: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 17.0, color: Colors.white70),
         selectedItemId: selectedMenuItemId,
         onMenuItemSelected: (String itemId) {
           selectedMenuItemId = itemId;
