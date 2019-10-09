@@ -23,8 +23,8 @@ dependencies:
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # flutter_test:
+  #   sdk: flutterAlignmentGeometry
 
   flutter_launcher_icons: "^0.7.0"
 
@@ -36,11 +36,7 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-    - Assets/Images/insurance.png
-    - Assets/Images/ic_launcher.png
-    - Assets/Images/fitmen.jpg
-    - Assets/Images/icon.png
-    - Assets/Images/banner.jpg
+    - Assets/Images/
 
   fonts:
     - family: GoogleSans

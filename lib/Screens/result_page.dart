@@ -11,7 +11,7 @@ class ResultPage extends StatelessWidget {
       {@required this.bmiResult,
       @required this.resultText,
       @required this.resultTextStyle,
-      @required this.interpretation});
+      @required this.interpretation, String Result});
 
   @override
   Widget build(BuildContext context) {

@@ -54,7 +54,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
       new MenuItem(id: 'aboutapp', title: 'About Us'),
       new MenuItem(id: 'share', title: 'Share App'),
       new MenuItem(id: 'rateus', title: 'Rate App'),
-      new MenuItem(id: 'feedback', title: 'Feedback')
+      new MenuItem(id: 'feedback', title: 'Send Feedback')
     ],
   );
 

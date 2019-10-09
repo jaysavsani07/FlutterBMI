@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
+import 'package:bmi_calculator/Utilities/app_util.dart';
 import 'package:bmi_calculator/animations/animate_button.dart';
 import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class BMIMain extends StatefulWidget {
 class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
   var btnVisibility = 1.0;
   GenderEnum selectedGender;
+
   Icon icon = Icon(FontAwesomeIcons.solidSun);
 
   AnimationController _controller;
@@ -35,9 +37,7 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
     _controller = new AnimationController(
       duration: const Duration(milliseconds: 1000),
       vsync: this,
-    )..repeat(
-      reverse: true
-    );
+    )..repeat(reverse: true);
   }
 
   @override
@@ -69,88 +69,91 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
       child: Scaffold(
           // drawer: Drawer(),
           body: SafeArea(
-            child: Container(
-                child: Stack(
-              children: <Widget>[
-                SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 74.0),
-                  child: Column(
-                    children: <Widget>[
-                      // Male/Female selection
-                      new Container(
-                          child: new Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[new Male(), new Female()],
-                      )),
-                      new Height(),
-                      new Gender(),
-                    ],
+        child: Container(
+            child: Stack(
+          children: <Widget>[
+            SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 74.0),
+              child: Column(
+                children: <Widget>[
+                  // Male/Female selection
+                  new Container(
+                      child: new Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[new Male(), new Female()],
+                  )),
+                  new Height(),
+                  new Gender(),
+                ],
+              ),
+            ),
+            AnimatedLoader(
+              animation: _controller,
+              // alignment: FractionalOffset.center,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+                alignment: Alignment.bottomCenter,
+                child: MaterialButton(
+                  child: Text(
+                    'Calculate'.toUpperCase(),
+                    style: TextStyle(
+                        color: Color(0xFF013487),
+                        fontSize: 16.0,
+                        letterSpacing: 1),
                   ),
+                  color: Color.fromRGBO(179, 157, 219, 0.4),
+                  elevation: 0.0,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  minWidth: 215.0,
+                  height: 62.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  onPressed: () {},
                 ),
-                AnimatedLoader(
-                  animation: _controller,
-                  // alignment: FractionalOffset.center,
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-                    alignment: Alignment.bottomCenter,
-                    child: MaterialButton(
-                      child: Text(
-                        'Calculate'.toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xFF013487), 
-                            fontSize: 16.0,
-                            letterSpacing: 1),
-                      ),
-                      color: Color.fromRGBO(179,157,219, 0.4),
-                      elevation: 0.0,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      minWidth: 215.0,
-                      height: 62.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: () {},
-                    ),
-                  ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
+              padding: EdgeInsets.all(11.0),
+              child: MaterialButton(
+                child: Text(
+                  'Calculate'.toUpperCase(),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 16.0, letterSpacing: 1),
                 ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
-                  padding: EdgeInsets.all(11.0),
-                  child: MaterialButton(
-                    child: Text(
-                      'Calculate'.toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          letterSpacing: 1),
-                    ),
-                    color: Colors.deepPurple,
-                    elevation: 2.0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    minWidth: 200.0,
-                    height: 50.0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    onPressed: () {
-                      CalculatorBrain calc =
-                          CalculatorBrain(height: height, weight: weight);
-                      Navigator.push(
-                          context,
-                          SizeRoute(
-                              page: ResultPage(
-                                Result: calc.calculateBMI(),
-                            resultText: calc.getResult(),
-                            resultTextStyle:
-                                calc.resultTextStyle(calc.getResult()),
-                            interpretation: calc.getInterpretation(),
-                          )));
-                    },
-                  ),
-                ),
-              ],
-            )),
-          )),
+                color: Colors.deepPurple,
+                elevation: 2.0,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                minWidth: 200.0,
+                height: 50.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0)),
+                onPressed: () {
+                  CalculatorBrain calc;
+                  if (!isCentSelected)
+                    calc = CalculatorBrain(height: heightCal, weight: weight);
+                  else {
+                    calc = CalculatorBrain(
+                        height: AppUtil.feetInchToCM(feetValue, inchValue),
+                        weight: weight);
+                  }
+                  Navigator.push(
+                      context,
+                      SizeRoute(
+                          page: ResultPage(
+                        bmiResult: calc.calculateBMI(),
+                        resultText: calc.getResult(),
+                        resultTextStyle: calc.resultTextStyle(calc.getResult()),
+                        interpretation: calc.getInterpretation(),
+                      )));
+                },
+              ),
+            ),
+          ],
+        )),
+      )),
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.transparent,
         systemNavigationBarDividerColor: Colors.black,
@@ -427,58 +430,249 @@ class _HeightState extends State<Height> {
         elevation: 2.0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
-            padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            width: MediaQuery.of(context).size.height,
-            height: Screen(MediaQuery.of(context).size).hp(25),
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            lengthSwitch(),
+            handleSizeUI(),
+          ],
+        )),
+      ),
+    );
+  }
+
+  Widget handleSizeUI() {
+    if (!isCentSelected)
+      return centimeterView();
+    else
+      return feetInchView();
+  }
+
+//* Length unit switch (Centimetre or Ft)
+  Widget lengthSwitch() {
+    return Container(
+      margin: EdgeInsets.fromLTRB(200.0, 10.0, 0.0, 0.0),
+      height: 30.0,
+      padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(237, 231, 246, 1),
+        borderRadius: BorderRadius.circular(40.0),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(
+            'cm',
+            style: TextStyle(
+                fontSize: 12.0,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w900,
+                color: Colors.grey.shade700),
+          ),
+          Switch(
+            value: isCentSelected,
+            onChanged: (value) {
+              setState(() {
+                isCentSelected = value;
+              });
+            },
+            inactiveTrackColor: Color.fromRGBO(209, 196, 233, 1),
+            inactiveThumbColor: Colors.deepPurple,
+            activeTrackColor: Color.fromRGBO(209, 196, 233, 1),
+            activeColor: Colors.deepPurple,
+            materialTapTargetSize: MaterialTapTargetSize.padded,
+          ),
+          Text(
+            'ft',
+            style: TextStyle(
+                fontSize: 12.0,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w900,
+                color: Colors.grey.shade700),
+          ),
+        ],
+      ),
+    );
+  }
+
+//* CentimeterView
+  Widget centimeterView() {
+    return Opacity(
+      opacity: 1,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Height',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  color: Theme.of(context).accentColor),
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
               children: <Widget>[
                 Text(
-                  'Height',
+                  heightCal.toString(),
                   style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor),
+                      color: Theme.of(context).accentColor,
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.w900),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: <Widget>[
-                    Text(
-                      height.toString(),
-                      style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 50.0,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    Text(
-                      'cm',
-                      style: kLabelTextStyle,
-                    ),
-                  ],
+                Text(
+                  'cm',
+                  style: kLabelTextStyle,
                 ),
-                SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: Colors.grey.shade300,
-                    inactiveTrackColor: Colors.grey.shade300,
-                    thumbColor: Colors.deepPurple,
-                    overlayColor: Color(0x29EB1555),
-                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                    overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+              ],
+            ),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                activeTrackColor: Colors.grey.shade300,
+                inactiveTrackColor: Colors.grey.shade300,
+                thumbColor: Colors.deepPurple,
+                overlayColor: Color(0x29EB1555),
+                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+              ),
+              child: Slider(
+                value: heightCal.toDouble(),
+                min: minHeight,
+                max: maxHeight,
+                onChanged: (double newValue) {
+                  setState(() {
+                    heightCal = newValue.round();
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget feetInchView() {
+    return Opacity(
+      opacity: 1,
+      child: Container(
+        height: 150.0,
+        padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Height\n',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  color: Theme.of(context).accentColor),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(24.0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).buttonColor,
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child: Slider(
-                    value: height.toDouble(),
-                    min: minHeight,
-                    max: maxHeight,
-                    onChanged: (double newValue) {
+                  child: DropdownButton<int>(
+                    isDense: true,
+                    value: feetValue,
+                    hint: Text('ft'),
+                    icon: Icon(
+                      Icons.arrow_downward,
+                      color: Colors.grey,
+                    ),
+                    iconSize: 24,
+                    elevation: 16,
+                    // isExpanded: true,
+                    style: TextStyle(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.w900,
+                        color: Theme.of(context).accentColor),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.transparent,
+                    ),
+                    onChanged: (int newValue) {
                       setState(() {
-                        height = newValue.round();
+                        feetValue = newValue;
                       });
                     },
+                    items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        .map<DropdownMenuItem<int>>((int value) {
+                      return DropdownMenuItem<int>(
+                        value: value,
+                        child: Text(
+                          value.toString(),
+                          style: TextStyle(fontSize: 40.0),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(24.0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).buttonColor,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: DropdownButton<String>(
+                    isDense: true,
+                    value: inchValue,
+                    hint: Text('in'),
+                    icon: Icon(
+                      Icons.arrow_downward,
+                      color: Colors.grey,
+                    ),
+                    iconSize: 24,
+                    elevation: 16,
+                    style: TextStyle(
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.w900,
+                        color: Theme.of(context).accentColor),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.transparent,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        inchValue = newValue;
+                      });
+                    },
+                    items: <String>[
+                      '0"',
+                      '1"',
+                      '2"',
+                      '3"',
+                      '4"',
+                      '5"',
+                      '6"',
+                      '7"',
+                      '8"',
+                      '9"',
+                      '10"',
+                      '11"',
+                      '12"'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 40.0),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ],
-            )),
+            ),
+          ],
+        ),
       ),
     );
   }
