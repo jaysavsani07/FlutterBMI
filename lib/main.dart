@@ -33,8 +33,7 @@ void getAppVersionName() async {
   }
   
 void getTheme() async {
-  var key =
-      await SharedPreference.getStringValue(SharedPreference.selectedTheme);
+  var key = await SharedPreference.getStringValue(SharedPreference.selectedTheme);
   switch (key) {
     case "MyThemeKeys.LIGHT":
       isDarkTheme = false;

@@ -48,6 +48,11 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (selectedChoice == "Centimetre")
+      isCentSelected = false;
+    else
+      isCentSelected = true;
+
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         // statusBarColor: Colors.white,
@@ -475,6 +480,10 @@ class _HeightState extends State<Height> {
             value: isCentSelected,
             onChanged: (value) {
               setState(() {
+                if (value)
+                  selectedChoice = "Feet-Inch";
+                else
+                  selectedChoice = "Centimetre";
                 isCentSelected = value;
               });
             },

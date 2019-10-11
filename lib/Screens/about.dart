@@ -26,9 +26,19 @@ class AboutUS extends StatelessWidget {
     ]);
     
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar( 
         elevation: 0.0,
-        centerTitle: true,
+        centerTitle: false,
+        title: Text(
+            'About App',
+            textScaleFactor: 1.2,
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.start,
+            style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0),
+          ),
         backgroundColor: Theme.of(context).primaryColorDark,
       ),
       body: Container(
@@ -45,18 +55,20 @@ class AboutUS extends StatelessWidget {
       child: Stack(
         fit: StackFit.loose,
         children: <Widget>[
-          Container(
-            height: 190.0,
+          Container(            
+            // height: 190.0,
             child: Image(
               image: AssetImage("Assets/Images/banner.jpg"),
-              height: 200.0,
+              // height: 200.0,
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(20.0, 200.0, 0.0, 0.0),
+            margin: EdgeInsets.fromLTRB(20.0, 210.0, 0.0, 0.0),
             child: Column(
               children: <Widget>[
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
                       image: AssetImage("Assets/Images/ic_launcher.png"),
@@ -82,7 +94,7 @@ class AboutUS extends StatelessWidget {
                 Divider(
                   color: Colors.grey,
                   indent: 5.0,
-                  endIndent: 200.0,
+                  endIndent:20.0,
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(5.0, 10.0, 20.0, 0.0),

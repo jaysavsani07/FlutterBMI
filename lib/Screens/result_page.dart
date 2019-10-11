@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResultPage extends StatelessWidget {
   final String bmiResult;
@@ -11,24 +12,24 @@ class ResultPage extends StatelessWidget {
       {@required this.bmiResult,
       @required this.resultText,
       @required this.resultTextStyle,
-      @required this.interpretation, String Result});
+      @required this.interpretation,
+      String Result});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColorDark,
-        title: Text(
-          'BMI CALCULATOR',
-          textDirection: TextDirection.ltr,
-          style: TextStyle( 
-              color: Theme.of(context).accentColor,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w900),
-        ),
-      ),
+          elevation: 0.0,
+          centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColorDark,
+          title: Text(
+            'YOUR HEALTH STATUS',
+            textDirection: TextDirection.ltr,
+            style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontSize: 16.0,
+                fontWeight: FontWeight.w900),
+          )),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,6 +77,7 @@ class ResultPage extends StatelessWidget {
                   ),
                   Text(
                     resultText,
+                    textAlign: TextAlign.center,
                     style: resultTextStyle,
                   ),
                   Text(
@@ -85,19 +87,44 @@ class ResultPage extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w700),
                   ),
-                  MaterialButton(
-                    height: 50,
-                    minWidth: 200,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    color: Colors.deepPurple,
-                    child: Text(
-                      "Re-Calculate".toUpperCase(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    verticalDirection: VerticalDirection.up,
+                    children: <Widget>[   
+                                   
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MaterialButton(
+                          height: 50,
+                          minWidth: 150,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          color: Colors.deepPurple,
+                          child: Text(
+                            "Re-Calculate".toUpperCase(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      MaterialButton(                      
+                        height: 50,
+                        minWidth: 150,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        color: Colors.deepPurple.shade200,
+                        child: Text(
+                          "BMI Charts".toUpperCase(),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          // 
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

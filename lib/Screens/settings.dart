@@ -1,4 +1,8 @@
 import 'package:bmi_calculator/Global%20Variables/globals.dart';
+import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
+import 'package:bmi_calculator/Utilities/shared_preference_handler.dart';
+import 'package:bmi_calculator/Utilities/theme_handler.dart';
+import 'package:bmi_calculator/components/single_choice_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +12,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  List<String> reportList = [
+    "Centimetre",
+    "Feet-Inch",
+  ];
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -49,27 +58,26 @@ class _SettingsState extends State<Settings> {
       color: Theme.of(context).primaryColor,
       width: MediaQuery.of(context).size.width,
       child: Column(
-        children: <Widget>[          
+        children: <Widget>[
           Card(
             margin: EdgeInsets.all(10.0),
-            elevation: 2.0,            
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            elevation: 2.0,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Container(
-              padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 30.0),              
+              padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 30.0),
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(12.0),
-                image: DecorationImage(
-                  image: AssetImage("Assets/Images/daynight.png"),
-                  fit: BoxFit.scaleDown
-                )
-              ),
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(12.0),
+                  image: DecorationImage(
+                      image: AssetImage("Assets/Images/daynight.png"),
+                      fit: BoxFit.scaleDown)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Dark Mode",
+                    themeLabel,
                     style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontSize: 16.0,
@@ -80,6 +88,23 @@ class _SettingsState extends State<Settings> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched = value;
+                        if (isDarkTheme) {
+                          isDarkTheme = false;
+                          isSwitched = false;
+                          themeLabel = "Light Mode";
+                          _changeTheme(context, MyThemeKeys.LIGHT);
+                          SharedPreference.setStringValue(
+                              SharedPreference.selectedTheme,
+                              MyThemeKeys.LIGHT.toString());
+                        } else {
+                          isDarkTheme = true;
+                          isSwitched = false;
+                          themeLabel = "Dark Mode";
+                          _changeTheme(context, MyThemeKeys.DARKER);
+                          SharedPreference.setStringValue(
+                              SharedPreference.selectedTheme,
+                              MyThemeKeys.DARKER.toString());
+                        }
                       });
                     },
                     inactiveTrackColor: Colors.grey.shade300,
@@ -91,9 +116,44 @@ class _SettingsState extends State<Settings> {
                 ],
               ),
             ),
+          ),
+          Card(
+            margin: EdgeInsets.all(10.0),
+            elevation: 2.0,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 0.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Unit of Measurement ",
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w800),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      MultiSelectChip(reportList),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           )
         ],
       ),
     );
   }
+}
+
+void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
+  CustomTheme.instanceOf(buildContext).changeTheme(key);
 }

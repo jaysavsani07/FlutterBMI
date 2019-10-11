@@ -25,19 +25,24 @@ class _DrawerMenuState extends State<DrawerMenu> {
     color: Colors.black38,
   );
   void getTheme() async {
-    var key =
-        await SharedPreference.getStringValue(SharedPreference.selectedTheme);
+    var key = await SharedPreference.getStringValue(SharedPreference.selectedTheme);
     switch (key) {
       case "MyThemeKeys.LIGHT":
         isDarkTheme = false;
+        isSwitched = false;
+        themeLabel = "Light Mode";
         icon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
         break;
       case "MyThemeKeys.DARKER":
         isDarkTheme = true;
+        isSwitched = true;
+        themeLabel = "Dark Mode";
         icon = Icon(FontAwesomeIcons.solidSun);
         break;
       default:
         isDarkTheme = false;
+        isSwitched = false;
+        themeLabel = "Light Mode";
         icon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
         break;
     }
@@ -51,7 +56,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
     items: [
       new MenuItem(id: 'home', title: 'Home'),
       new MenuItem(id: 'setting', title: 'Settings'),
-      new MenuItem(id: 'aboutapp', title: 'About Us'),
+      new MenuItem(id: 'aboutapp', title: 'About App'),
       new MenuItem(id: 'share', title: 'Share App'),
       new MenuItem(id: 'rateus', title: 'Rate App'),
       new MenuItem(id: 'feedback', title: 'Send Feedback')
@@ -74,7 +79,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
               width: 100.0,
               height: 100.0),
           Text("  BMI.",
-              style: TextStyle(color: Colors.white, fontSize: 34.0, fontWeight: FontWeight.bold))
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 34.0,
+                  fontWeight: FontWeight.bold))
         ],
       ),
     );
@@ -145,6 +153,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
 
   @override
   Widget build(BuildContext context) {
+    getTheme();
     setState(() => _widget = Text("default"));
 
     return new DrawerScaffold(
@@ -173,6 +182,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   setState(() {
                     if (isDarkTheme) {
                       isDarkTheme = false;
+                      isSwitched = false;
+                      themeLabel = "Light Mode";
                       icon = Icon(FontAwesomeIcons.solidMoon,
                           color: Colors.black38);
                       _changeTheme(context, MyThemeKeys.LIGHT);
@@ -181,6 +192,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           MyThemeKeys.LIGHT.toString());
                     } else {
                       isDarkTheme = true;
+                      isSwitched = true;
+                      themeLabel = "Dark Mode";
                       icon = Icon(FontAwesomeIcons.solidSun);
                       _changeTheme(context, MyThemeKeys.DARKER);
                       SharedPreference.setStringValue(
@@ -203,7 +216,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
             image: AssetImage("Assets/Images/fitmen.jpg"),
             colorFilter: ColorFilter.mode(Colors.white54, BlendMode.dstOut),
             fit: BoxFit.cover),
-        selectorColor: Color.fromRGBO(67,193,152, 1),
+        selectorColor: Color.fromRGBO(67, 193, 152, 1),
         textStyle: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 17.0, color: Colors.white70),
         selectedItemId: selectedMenuItemId,
@@ -214,6 +227,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               setState(() => _widget = Text("1"));
               break;
             case 'setting':
+              initMeasurementUnit();
               Navigator.push(context, SizeRoute(page: Settings()));
               setState(() => _widget = Text("default"));
               break;
@@ -246,6 +260,11 @@ class _DrawerMenuState extends State<DrawerMenu> {
         color: Colors.white,
       ),
     );
+  }
+
+  void initMeasurementUnit() {
+    // selectedChoice = SharedPreference.getStringValue(SharedPreference.selectedMUnit)??"";
+    print("chip ${SharedPreference.getStringValue(SharedPreference.selectedMUnit)}");
   }
 
   launchURL(String url) async {

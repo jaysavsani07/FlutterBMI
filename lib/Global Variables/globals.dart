@@ -18,9 +18,11 @@ bool isCentSelected = true;
 Gender selectedGender;
 bool isSwitched = false;
 dynamic isDarkTheme = false;
+String themeLabel = "Dark Mode";
 
 int feetValue = 4;
 String inchValue = '8"';
+String selectedChoice = "Centimetre";
 
 String aboutBMI =
     "Body Mass Index(BMI) is value derived from person's weight and height." +
