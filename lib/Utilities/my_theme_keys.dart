@@ -10,6 +10,10 @@ class MyThemes {
     buttonColor: Colors.grey.shade200,
     brightness: Brightness.light,
     iconTheme: IconThemeData(color: Colors.deepPurple),
+    cardTheme: CardTheme(
+      color: Colors.white,
+      elevation: 2.0,
+    ),
     accentColor: Color.fromRGBO(86, 81, 104, 1),
     primaryTextTheme: TextTheme(title: TextStyle(color: Colors.red)),
     chipTheme: ChipThemeData(
@@ -24,6 +28,9 @@ class MyThemes {
       secondarySelectedColor: Colors.deepPurple, 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: Colors.black.withOpacity(0)
+    )
   );
 
   static final ThemeData darkerTheme = ThemeData(
@@ -50,6 +57,9 @@ class MyThemes {
       secondarySelectedColor: Colors.deepPurple, 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: Colors.black.withOpacity(0)
+    )
   );
 
   static final ThemeData darkTheme = ThemeData(

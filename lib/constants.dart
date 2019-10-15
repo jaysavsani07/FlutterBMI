@@ -11,6 +11,24 @@ const kLabelTextStyle = TextStyle(
   color: Color(0xFF8D8E98),
 );
 
+const listHeading = TextStyle(
+  fontSize: 18.0,
+  color: Colors.grey,
+  fontWeight: FontWeight.w900
+);
+
+const listTitle = TextStyle(
+  fontSize: 16.0,
+  color: Colors.grey,
+  fontWeight: FontWeight.normal
+);
+
+const listTrailing = TextStyle(
+  fontSize: 14.0,
+  color: Colors.grey,
+  fontWeight: FontWeight.w900
+);
+
 const kNumberTextStyle = TextStyle(
     color: Color.fromRGBO(86, 81, 104, 1),
     fontSize: 50.0,
