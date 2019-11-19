@@ -25,14 +25,14 @@ class _BMIMainState extends State<BMIMain> with SingleTickerProviderStateMixin {
   var btnVisibility = 1.0;
   GenderEnum selectedGender;
 
-  Icon icon = Icon(FontAwesomeIcons.solidSun);
+  // Icon icon = Icon(FontAwesomeIcons.solidSun);
 
   AnimationController _controller;
 
   @override
   initState() {
     super.initState();
-    isDarkTheme = false;
+    // isDarkTheme = false;
 
     _controller = new AnimationController(
       duration: const Duration(milliseconds: 1000),
@@ -184,7 +184,7 @@ class _MaleState extends State<Male> {
       setState(() {
         if (age > 1) {
           age--;
-        }
+        } else {}
       });
       await Future.delayed(Duration(milliseconds: 100));
       decreseAge();
@@ -309,7 +309,7 @@ class _FemaleState extends State<Female> {
 
     while (buttonPressed) {
       setState(() {
-        if (age > 1) {
+        if (weight > 5) {
           weight--;
         }
       });
@@ -508,9 +508,10 @@ class _HeightState extends State<Height> {
 
 //* CentimeterView
   Widget centimeterView() {
-    return Opacity(
-      opacity: 1,
+    return AnimatedOpacity(
+      opacity: !isCentSelected ? 1.0 : 0.0,
       child: Container(
+        height: 140.0,
         padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: Column(
           children: <Widget>[
@@ -561,14 +562,16 @@ class _HeightState extends State<Height> {
           ],
         ),
       ),
+      curve: Curves.easeOutQuart,
+      duration: Duration(milliseconds: 4000),
     );
   }
 
   Widget feetInchView() {
-    return Opacity(
-      opacity: 1,
+    return AnimatedOpacity(
+      opacity: isCentSelected ? 1.0 : 0.0,
       child: Container(
-        height: 150.0,
+        height: 140.0,
         padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: Column(
           children: <Widget>[
@@ -583,6 +586,7 @@ class _HeightState extends State<Height> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
+                  height: 90.0,
                   padding: EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
                     color: Theme.of(context).buttonColor,
@@ -604,7 +608,6 @@ class _HeightState extends State<Height> {
                         fontWeight: FontWeight.w900,
                         color: Theme.of(context).accentColor),
                     underline: Container(
-                      height: 2,
                       color: Colors.transparent,
                     ),
                     onChanged: (int newValue) {
@@ -625,6 +628,7 @@ class _HeightState extends State<Height> {
                   ),
                 ),
                 Container(
+                  height: 90.0,
                   padding: EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
                     color: Theme.of(context).buttonColor,
@@ -645,7 +649,6 @@ class _HeightState extends State<Height> {
                         fontWeight: FontWeight.w900,
                         color: Theme.of(context).accentColor),
                     underline: Container(
-                      height: 2,
                       color: Colors.transparent,
                     ),
                     onChanged: (String newValue) {
@@ -683,6 +686,8 @@ class _HeightState extends State<Height> {
           ],
         ),
       ),
+      curve: Curves.easeOutQuart,
+      duration: Duration(milliseconds: 4000),
     );
   }
 }

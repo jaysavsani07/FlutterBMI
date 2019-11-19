@@ -7,6 +7,7 @@ import 'package:bmi_calculator/Utilities/my_theme_keys.dart';
 import 'package:bmi_calculator/Utilities/shared_preference_handler.dart';
 import 'package:bmi_calculator/Utilities/theme_handler.dart';
 import 'package:bmi_calculator/animations/size_transition.dart';
+import 'package:bmi_calculator/constants.dart';
 import 'package:drawerbehavior/drawer_scaffold.dart';
 import 'package:drawerbehavior/menu_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,36 +21,27 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-  Icon icon = Icon(
-    FontAwesomeIcons.solidMoon,
-    color: Colors.black38,
-  );
+  void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
+    CustomTheme.instanceOf(buildContext).changeTheme(key);
+  }
+
   void getTheme() async {
-    var key = await SharedPreference.getStringValue(SharedPreference.selectedTheme);
+    var key =
+        await SharedPreference.getStringValue(SharedPreference.selectedTheme);
     switch (key) {
       case "MyThemeKeys.LIGHT":
         isDarkTheme = false;
-        isSwitched = false;
-        themeLabel = "Light Mode";
-        icon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
+        themeIcon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
         break;
       case "MyThemeKeys.DARKER":
         isDarkTheme = true;
-        isSwitched = true;
-        themeLabel = "Dark Mode";
-        icon = Icon(FontAwesomeIcons.solidSun);
+        themeIcon = Icon(FontAwesomeIcons.solidSun);
         break;
       default:
         isDarkTheme = false;
-        isSwitched = false;
-        themeLabel = "Light Mode";
-        icon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
+        themeIcon = Icon(FontAwesomeIcons.solidMoon, color: Colors.black38);
         break;
     }
-  }
-
-  void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
-    CustomTheme.instanceOf(buildContext).changeTheme(key);
   }
 
   final menu = new Menu(
@@ -152,10 +144,15 @@ class _DrawerMenuState extends State<DrawerMenu> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    getTheme();
-    setState(() => _widget = Text("default"));
+  void initState() {
+    super.initState();
+    selectedMenuItemId = 'home';
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    selectedMenuItemId = 'home';
+    getTheme();
     return new DrawerScaffold(
       percentage: .8,
       cornerRadius: 20,
@@ -177,14 +174,18 @@ class _DrawerMenuState extends State<DrawerMenu> {
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
               height: MediaQuery.of(context).size.height,
               child: IconButton(
-                icon: icon,
+                icon: themeIcon != null
+                    ? themeIcon
+                    : new Icon(
+                        FontAwesomeIcons.solidMoon,
+                        color: Colors.transparent,
+                      ),
                 onPressed: () {
                   setState(() {
                     if (isDarkTheme) {
                       isDarkTheme = false;
-                      isSwitched = false;
                       themeLabel = "Light Mode";
-                      icon = Icon(FontAwesomeIcons.solidMoon,
+                      themeIcon = Icon(FontAwesomeIcons.solidMoon,
                           color: Colors.black38);
                       _changeTheme(context, MyThemeKeys.LIGHT);
                       SharedPreference.setStringValue(
@@ -192,9 +193,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           MyThemeKeys.LIGHT.toString());
                     } else {
                       isDarkTheme = true;
-                      isSwitched = true;
                       themeLabel = "Dark Mode";
-                      icon = Icon(FontAwesomeIcons.solidSun);
+                      themeIcon = Icon(FontAwesomeIcons.solidSun);
                       _changeTheme(context, MyThemeKeys.DARKER);
                       SharedPreference.setStringValue(
                           SharedPreference.selectedTheme,
@@ -264,7 +264,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
 
   void initMeasurementUnit() {
     // selectedChoice = SharedPreference.getStringValue(SharedPreference.selectedMUnit)??"";
-    print("chip ${SharedPreference.getStringValue(SharedPreference.selectedMUnit)}");
+    print(
+        "chip ${SharedPreference.getStringValue(SharedPreference.selectedMUnit)}");
   }
 
   launchURL(String url) async {

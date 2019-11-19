@@ -12,7 +12,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
   List<String> reportList = [
     "Centimetre",
     "Feet-Inch",
@@ -84,13 +83,12 @@ class _SettingsState extends State<Settings> {
                         fontWeight: FontWeight.w800),
                   ),
                   Switch(
-                    value: isSwitched,
+                    value: isDarkTheme,
                     onChanged: (value) {
                       setState(() {
-                        isSwitched = value;
+                        // isDarkTheme = value;
                         if (isDarkTheme) {
                           isDarkTheme = false;
-                          isSwitched = false;
                           themeLabel = "Light Mode";
                           _changeTheme(context, MyThemeKeys.LIGHT);
                           SharedPreference.setStringValue(
@@ -98,7 +96,6 @@ class _SettingsState extends State<Settings> {
                               MyThemeKeys.LIGHT.toString());
                         } else {
                           isDarkTheme = true;
-                          isSwitched = false;
                           themeLabel = "Dark Mode";
                           _changeTheme(context, MyThemeKeys.DARKER);
                           SharedPreference.setStringValue(

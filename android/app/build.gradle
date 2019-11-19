@@ -43,7 +43,7 @@ android {
         applicationId "com.nividata.bmi_calculator"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 4
+        versionCode 5
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

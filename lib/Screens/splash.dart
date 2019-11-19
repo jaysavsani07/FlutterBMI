@@ -1,5 +1,4 @@
-import 'package:bmi_calculator/Screens/bmi_main.dart';
-import 'package:bmi_calculator/animations/scale_route.dart';
+import 'dart:async';
 import 'package:bmi_calculator/animations/size_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,15 +12,26 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  startTime() async {
+    var _duration = new Duration(seconds: 3);
+    return new Timer(_duration, nivigationPage);
+  }
+
+  void nivigationPage() {
+    Navigator.of(context).pushReplacement(SizeRoute(page: DrawerMenu()));
+  }
+
   @override
   Widget build(BuildContext context) {
-
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+    startTime();
+
     return AnnotatedRegion(
       child: Material(
         type: MaterialType.transparency,
@@ -71,24 +81,25 @@ class _SplashState extends State<Splash> {
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 60.0),
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(22.0)),
-                minWidth: 200.0,
-                height: 45,
-                elevation: 10.0,
-                color: Colors.white,
-                child: new Text('Let\'s get started',
-                    style: new TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.deepPurple,
-                        fontWeight: FontWeight.w800)),
-                onPressed: () {
-                  Navigator.pushReplacement(context, SizeRoute(page: DrawerMenu()));
-                },
+            Opacity(
+              opacity: 0.0,
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 60.0),
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22.0)),
+                  minWidth: 200.0,
+                  height: 45,
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: new Text('Let\'s get started',
+                      style: new TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.w800)),
+                  onPressed: () {},
+                ),
               ),
             ),
           ],
