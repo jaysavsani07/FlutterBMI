@@ -24,21 +24,21 @@ class AboutUS extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    
+
     return Scaffold(
-      appBar: AppBar( 
+      appBar: AppBar(
         elevation: 0.0,
         centerTitle: false,
         title: Text(
-            'About App',
-            textScaleFactor: 1.2,
-            textDirection: TextDirection.ltr,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0),
-          ),
+          'About App',
+          textScaleFactor: 1.2,
+          textDirection: TextDirection.ltr,
+          textAlign: TextAlign.start,
+          style: TextStyle(
+              color: Theme.of(context).accentColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0),
+        ),
         backgroundColor: Theme.of(context).primaryColorDark,
       ),
       body: Container(
@@ -55,7 +55,7 @@ class AboutUS extends StatelessWidget {
       child: Stack(
         fit: StackFit.loose,
         children: <Widget>[
-          Container(            
+          Container(
             // height: 190.0,
             child: Image(
               image: AssetImage("Assets/Images/banner.jpg"),
@@ -94,7 +94,7 @@ class AboutUS extends StatelessWidget {
                 Divider(
                   color: Colors.grey,
                   indent: 5.0,
-                  endIndent:20.0,
+                  endIndent: 20.0,
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(5.0, 10.0, 20.0, 0.0),
@@ -113,7 +113,9 @@ class AboutUS extends StatelessWidget {
                     child: Text("Read More..."),
                     textColor: Theme.of(context).primaryColor,
                     onPressed: () {
-                      LaunchReview.launch();
+                      LaunchReview.launch(
+                          androidAppId: "com.nividata.bmi_calculator",
+                          iOSAppId: "com.nividataapps.bmicalculator");
                     },
                   ),
                 ),

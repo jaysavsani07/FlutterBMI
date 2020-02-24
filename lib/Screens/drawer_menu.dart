@@ -240,7 +240,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
               setState(() => _widget = Text("default"));
               break;
             case 'rateus':
-              LaunchReview.launch();
+              LaunchReview.launch(
+                  androidAppId: "com.nividata.bmi_calculator",
+                  iOSAppId: "com.nividataapps.bmicalculator");
               setState(() => _widget = Text("default"));
               break;
             case 'feedback':
