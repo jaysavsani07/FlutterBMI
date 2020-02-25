@@ -20,12 +20,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '2'
+    flutterVersionCode = '5'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.1'
+    flutterVersionName = '1.1.2'
 }
 
 apply plugin: 'com.android.application'
@@ -43,7 +43,7 @@ android {
         applicationId "com.nividata.bmi_calculator"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 5
+        versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,7 +59,7 @@ android {
     buildTypes {
        release {
            signingConfig signingConfigs.release
-           minifyEnabled false
+           minifyEnabled true
        }
     }
 }
