@@ -12,6 +12,7 @@ import 'Utilities/theme_handler.dart';
 import 'constants.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   getTheme();
   updateStatusBarColor();
   getAppVersionName();
