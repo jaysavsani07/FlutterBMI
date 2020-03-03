@@ -12,24 +12,36 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
+  - shared_preferences_macos (0.0.1):
+    - Flutter
+  - shared_preferences_web (0.0.1):
+    - Flutter
   - url_launcher (0.0.1):
+    - Flutter
+  - url_launcher_macos (0.0.1):
+    - Flutter
+  - url_launcher_web (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - drawerbehavior (from `.symlinks/plugins/drawerbehavior/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `Flutter`)
   - get_version (from `.symlinks/plugins/get_version/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
+  - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
+  - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
 
 EXTERNAL SOURCES:
   drawerbehavior:
     :path: ".symlinks/plugins/drawerbehavior/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: Flutter
   get_version:
     :path: ".symlinks/plugins/get_version/ios"
   launch_review:
@@ -40,8 +52,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
+  shared_preferences_macos:
+    :path: ".symlinks/plugins/shared_preferences_macos/ios"
+  shared_preferences_web:
+    :path: ".symlinks/plugins/shared_preferences_web/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+  url_launcher_macos:
+    :path: ".symlinks/plugins/url_launcher_macos/ios"
+  url_launcher_web:
+    :path: ".symlinks/plugins/url_launcher_web/ios"
 
 SPEC CHECKSUMS:
   drawerbehavior: 688832bffec482cabacd8db3248ba582e1c2ea92
@@ -50,9 +70,13 @@ SPEC CHECKSUMS:
   launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   package_info: 48b108e75b8802c2d5e126f208ef540561c98aef
   share: bae0a282aab4483288913fc4dc0b935d4b491f2e
-  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
+  shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
+  shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
   url_launcher: a1c0cc845906122c4784c542523d8cacbded5626
+  url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
+  url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
 
-PODFILE CHECKSUM: 6cbebfb399da02909d17086c52b400953dc5299e
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

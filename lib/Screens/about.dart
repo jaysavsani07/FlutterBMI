@@ -115,7 +115,7 @@ class AboutUS extends StatelessWidget {
                     onPressed: () {
                       LaunchReview.launch(
                           androidAppId: "com.nividata.bmi_calculator",
-                          iOSAppId: "com.nividataapps.bmicalculator");
+                          iOSAppId: "id1488893444");
                     },
                   ),
                 ),

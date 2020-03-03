@@ -1,12 +1,12 @@
 # This is a generated file; do not edit or check into version control.
-drawerbehavior=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/drawerbehavior-0.0.8/
-get_version=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/get_version-0.1.0/
-launch_review=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/launch_review-2.0.0/
-package_info=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.0+14/
-share=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.3+6/
-shared_preferences=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6+2/
-shared_preferences_macos=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+6/
-shared_preferences_web=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+4/
-url_launcher=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.2/
-url_launcher_macos=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+4/
-url_launcher_web=/home/nividata/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+1/
+drawerbehavior=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/drawerbehavior-0.0.8/
+get_version=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/get_version-0.1.0/
+launch_review=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/launch_review-2.0.0/
+package_info=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.0+14/
+share=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.3+6/
+shared_preferences=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6+2/
+shared_preferences_macos=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+6/
+shared_preferences_web=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+4/
+url_launcher=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.2/
+url_launcher_macos=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+4/
+url_launcher_web=/Users/jaysavsani/Library/Developer/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+1/
