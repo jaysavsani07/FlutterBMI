@@ -8,8 +8,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.3
-    - android-25
+    - build-tools-28.0.3
+    - android-28
     - sys-img-armeabi-v7a-google_apis-25
     - extra-android-m2repository
     - extra-google-m2repository
