@@ -36,7 +36,7 @@ cache:
     - $HOME/.pub-cache
 
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b stable
+  - git clone https://github.com/flutter/flutter.git -b beta
 
 script:
   - ./flutter/bin/flutter -v build apk
