@@ -18,4 +18,4 @@ jobs:
         with:
           channel: 'stable' # or: 'dev' or 'beta'
       - run: flutter pub get
-      - run: flutter build apk
+      - run: flutter build apk --debug
