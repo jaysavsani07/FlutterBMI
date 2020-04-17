@@ -30,13 +30,11 @@ before_cache:
 
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
     - $HOME/.pub-cache
 
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
+  - ./flutter/bin/flutter clean
 
 script:
   - ./flutter/bin/flutter -v build apk
