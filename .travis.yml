@@ -36,10 +36,6 @@ cache:
     - $HOME/.pub-cache
 
 before_script:
-  - wget https://services.gradle.org/distributions/gradle-5.4.1-all.zip
-  - unzip -qq gradle-5.4.1-all.zip
-  - export GRADLE_HOME=$PWD/gradle-5.4.1
-  - export PATH=$GRADLE_HOME/bin:$PATH
   - git clone https://github.com/flutter/flutter.git -b stable
 
 script:
