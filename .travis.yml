@@ -29,7 +29,7 @@ before_script:
   - unzip -qq gradle-5.4-bin.zip
   - export GRADLE_HOME=$PWD/gradle-5.4
   - export PATH=$GRADLE_HOME/bin:$PATH
-  - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
+  - git clone https://github.com/flutter/flutter.git -b stable
 script:
   - ./flutter/bin/flutter -v build apk
 
