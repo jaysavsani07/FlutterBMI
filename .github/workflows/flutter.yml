@@ -18,7 +18,7 @@ jobs:
         with:
           channel: 'stable'
       - name: Building apk file
-        run: echo $KEY_JKS > ./android/app/key.jks && cat ./android/app/key.jks && flutter pub get && flutter build apk
+        run: echo $KEY_JKS > /home/runner/work/FlutterBMI/FlutterBMI/android/app/key.jsk && flutter pub get && flutter build apk
         env:
           KEY_JKS: ${{ secrets.KEY_JKS }}
           KEY_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
