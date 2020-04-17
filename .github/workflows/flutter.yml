@@ -14,8 +14,13 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1.1.1
         with:
-          channel: 'stable' # or: 'dev' or 'beta'
-      - run: flutter pub get
-      - run: flutter build apk --debug
+          channel: 'dev'
+        env:
+          KEY_JKS: ${{ secrets.KEY_JKS }}
+          run: echo $KEY_JKS > key.jks && flutter pub get && flutter test && flutter build apk --release
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
