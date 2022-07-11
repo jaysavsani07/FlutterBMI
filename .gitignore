@@ -113,3 +113,29 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+
+
+# Flutter repo-specific
+/bin/internal/bootstrap.bat
+/bin/internal/bootstrap.sh
+/dev/devicelab/ABresults*.json
+analysis_benchmark.json
+
+
+# Flutter/Dart/Pub related
+**/generated_plugin_registrant.dart
+
+# Android related
+.gradle/
+# iOS/XCode related
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/ephemeral
+
+# macOS
+**/Flutter/ephemeral/
+**/Pods/
+**/macos/Flutter/ephemeral
+**/xcuserdata/
+
+/android/.gradle/
