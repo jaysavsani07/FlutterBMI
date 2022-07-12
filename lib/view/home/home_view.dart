@@ -25,13 +25,17 @@ class HomeView extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 74.0),
               child: Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      AgeCardView(),
-                      WeightCardView(),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Expanded(child: AgeCardView()),
+                        SizedBox(width: 5,),
+                        Expanded(child: WeightCardView()),
+                      ],
+                    ),
                   ),
                   HeightCardView(),
                   GenderCardView(),

@@ -35,7 +35,7 @@ class SettingView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               child: Container(
-                padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 30.0),
+                padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 30.0),
                 decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(12.0),

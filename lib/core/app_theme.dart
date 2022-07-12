@@ -47,7 +47,7 @@ class AppTheme {
             TextStyle(fontWeight: FontWeight.w900, color: Colors.white),
         brightness: Brightness.light,
         disabledColor: Colors.grey,
-        labelPadding: EdgeInsets.all(0.0),
+        labelPadding: EdgeInsets.symmetric(horizontal: 5),
         labelStyle:
             TextStyle(fontWeight: FontWeight.w600, color: Colors.black54),
         padding: EdgeInsets.all(10.0),
@@ -106,7 +106,7 @@ class AppTheme {
             TextStyle(fontWeight: FontWeight.w900, color: Colors.white),
         brightness: Brightness.dark,
         disabledColor: Colors.grey,
-        labelPadding: EdgeInsets.all(0.0),
+        labelPadding: EdgeInsets.symmetric(horizontal: 5),
         labelStyle:
             TextStyle(fontWeight: FontWeight.w600, color: Colors.black54),
         padding: EdgeInsets.all(10.0),

@@ -25,110 +25,116 @@ class ResultView extends StatelessWidget {
           textDirection: TextDirection.ltr,
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Card(
-              color: Theme.of(context).cardTheme.color!,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              elevation: 15.0,
-              margin: EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Flex(
-                    direction: Axis.vertical,
-                    children: <Widget>[
-                      RichText(
-                        text: TextSpan(
-                            text: '',
-                            style: TextStyle(fontSize: 24, color: Colors.black),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: bmiResult.split(".")[0].toString(),
-                                  style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 100.0,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              TextSpan(
-                                  text:
-                                      '.' + bmiResult.split(".")[1].toString(),
-                                  style: TextStyle(
-                                      fontSize: 36.0,
-                                      color: Colors.grey.shade600)),
-                            ]),
-                      ),
-                      Text(
-                        'Your BMI index',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Color.fromRGBO(218, 218, 222, 1),
-                          fontWeight: FontWeight.w600,
+      body: SafeArea(
+        top: false,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Card(
+                color: Theme.of(context).cardTheme.color!,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                elevation: 15.0,
+                margin: EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Flex(
+                      direction: Axis.vertical,
+                      children: <Widget>[
+                        RichText(
+                          text: TextSpan(
+                              text: '',
+                              style: TextStyle(fontSize: 24, color: Colors.black),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: bmiResult.split(".")[0].toString(),
+                                    style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: 100.0,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                TextSpan(
+                                    text:
+                                        '.' + bmiResult.split(".")[1].toString(),
+                                    style: TextStyle(
+                                        fontSize: 36.0,
+                                        color: Colors.grey.shade600)),
+                              ]),
                         ),
+                        Text(
+                          'Your BMI index',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Color.fromRGBO(218, 218, 222, 1),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      resultText,
+                      textAlign: TextAlign.center,
+                      style: resultTextStyle,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: Text(
+                        interpretation,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontWeight: FontWeight.w700),
                       ),
-                    ],
-                  ),
-                  Text(
-                    resultText,
-                    textAlign: TextAlign.center,
-                    style: resultTextStyle,
-                  ),
-                  Text(
-                    interpretation,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    verticalDirection: VerticalDirection.up,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: MaterialButton(
+                    ),
+                    Column(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      verticalDirection: VerticalDirection.up,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: MaterialButton(
+                            height: 50,
+                            minWidth: 150,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            color: Colors.deepPurple,
+                            child: Text(
+                              "Re-Calculate".toUpperCase(),
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                        MaterialButton(
                           height: 50,
                           minWidth: 150,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
-                          color: Colors.deepPurple,
+                          color: Colors.deepPurple.shade200,
                           child: Text(
-                            "Re-Calculate".toUpperCase(),
+                            "BMI Chart".toUpperCase(),
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
-                            Navigator.pop(context);
+                            bmiChartBottomSheet(context);
                           },
                         ),
-                      ),
-                      MaterialButton(
-                        height: 50,
-                        minWidth: 150,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        color: Colors.deepPurple.shade200,
-                        child: Text(
-                          "BMI Chart".toUpperCase(),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          bmiChartBottomSheet(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
