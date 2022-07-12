@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/data/sharedpref/shared_preference_helper.dart';
 import 'package:bmi_calculator/view/app/app_view.dart';
 import 'package:bmi_calculator/view/app/theme_controller.dart';
+import 'package:bmi_calculator/view/app/theme_provider.dart';
 import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,9 +26,11 @@ Future<void> main() async {
 
   runApp(
     ChangeNotifierProvider(
-      create: (context) => BmiProvider(sharedPreferencesHelper: sharedPreferencesHelper),
-      child: InheritedThemeWrapper(
-        sharedPreferencesHelper: sharedPreferencesHelper,
+      create: (context) =>
+          BmiProvider(sharedPreferencesHelper: sharedPreferencesHelper),
+      child: ChangeNotifierProvider(
+        create: (context) =>
+            ThemeProvider(sharedPreferencesHelper: sharedPreferencesHelper),
         child: MyApp(),
       ),
     ),

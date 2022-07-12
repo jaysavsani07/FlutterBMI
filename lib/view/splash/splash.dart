@@ -61,18 +61,19 @@ class _SplashState extends State<Splash> {
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500),
                 ),
-                TyperAnimatedTextKit(
-                  pause: Duration(
-                    seconds: 2,
-                  ),
-                  textAlign: TextAlign.start,
-                  // alignment: AlignmentDirectional.bottomCenter,
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      "BMI.",
+                      textStyle: TextStyle(
+                        color: Colors.green.shade200,
+                        fontSize: 100.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
+                  pause: Duration(seconds: 2),
                   isRepeatingAnimation: false,
-                  textStyle: TextStyle(
-                      color: Colors.green.shade200,
-                      fontSize: 100.0,
-                      fontWeight: FontWeight.w900),
-                  text: <String>["BMI."],
                 )
               ],
             ),
