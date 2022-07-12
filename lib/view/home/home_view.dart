@@ -42,13 +42,17 @@ class HomeView extends StatelessWidget {
             Bmi bmi = context.read<BmiProvider>().bmi;
             BmiUtil calc;
             if (bmi.height.isCm) {
-              calc =
-                  BmiUtil(height: bmi.height.height, weight: bmi.weight.weight);
+              calc = BmiUtil(
+                height: bmi.height.height,
+                weight: bmi.weight.weight.toDouble(),
+                isKg: bmi.weight.isKg,
+              );
             } else {
               calc = BmiUtil(
-                  height:
-                      BmiUtil.feetInchToCM(bmi.height.feet, bmi.height.inch),
-                  weight: bmi.weight.weight);
+                height: BmiUtil.feetInchToCM(bmi.height.feet, bmi.height.inch),
+                weight: bmi.weight.weight.toDouble(),
+                isKg: bmi.weight.isKg,
+              );
             }
             Navigator.push(
               context,

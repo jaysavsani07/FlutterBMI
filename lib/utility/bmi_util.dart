@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 
 class BmiUtil {
   final int height;
-  final int weight;
+  final double weight;
+  final bool isKg;
 
   late double _bmi;
 
   BmiUtil({
     required this.height,
     required this.weight,
+    required this.isKg,
   });
 
   static int feetInchToCM(int feet, int inch) {
@@ -19,7 +21,11 @@ class BmiUtil {
   }
 
   String calculateBMI() {
-    _bmi = weight / pow(height / 100, 2);
+    if (isKg) {
+      _bmi = weight / pow(height / 100, 2);
+    } else {
+      _bmi = (weight * 0.45359237) / pow(height / 100, 2);
+    }
     return _bmi.toStringAsFixed(1);
   }
 
@@ -54,7 +60,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "SEVERELY UNDERWEIGHT":
         return TextStyle(
           color: Color.fromRGBO(229, 176, 234, 1),
@@ -62,7 +67,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "UNDERWEIGHT":
         return TextStyle(
           color: Color.fromRGBO(189, 131, 206, 1),
@@ -70,7 +74,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "NORMAL":
         return TextStyle(
           color: Color.fromRGBO(82, 222, 151, 1),
@@ -78,7 +81,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "OVERWEIGHT":
         return TextStyle(
           color: Color.fromRGBO(241, 188, 49, 1),
@@ -86,7 +88,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "OBESE Class 1 \n(Moderately obese)":
         return TextStyle(
           color: Color.fromRGBO(226, 88, 34, 1),
@@ -94,7 +95,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "OBESE Class 2 \n(Severely obese)":
         return TextStyle(
           color: Color.fromRGBO(178, 34, 34, 1),
@@ -102,7 +102,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       case "OBESE Class 3 \n(Very Severely obese)":
         return TextStyle(
           color: Color.fromRGBO(124, 10, 2, 1),
@@ -110,7 +109,6 @@ class BmiUtil {
           letterSpacing: 2.0,
           fontSize: 22.0,
         );
-        break;
       default:
         return TextStyle(
           color: Color.fromRGBO(0, 251, 182, 1),

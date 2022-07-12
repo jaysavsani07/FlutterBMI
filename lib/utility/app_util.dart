@@ -19,4 +19,9 @@ class AppUtil {
     "Centimetre",
     "Feet-Inch",
   ];
+
+  static List<String> weightUnitList = [
+    "Kilogram",
+    "Pound",
+  ];
 }

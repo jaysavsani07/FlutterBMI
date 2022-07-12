@@ -34,7 +34,7 @@ class AppTheme {
       chipTheme: ChipThemeData(
         selectedColor: Colors.deepPurple,
         backgroundColor: Color.fromRGBO(237, 231, 246, 1),
-        secondaryLabelStyle: TextStyle(fontWeight: FontWeight.w900),
+        secondaryLabelStyle: TextStyle(fontWeight: FontWeight.w900,color: Colors.white),
         brightness: Brightness.light,
         disabledColor: Colors.grey,
         labelPadding: EdgeInsets.all(0.0),
@@ -78,7 +78,7 @@ class AppTheme {
     chipTheme: ChipThemeData(
       selectedColor: Colors.deepPurple,
       backgroundColor: Color.fromRGBO(237, 231, 246, 1),
-      secondaryLabelStyle: TextStyle(fontWeight: FontWeight.w900),
+      secondaryLabelStyle: TextStyle(fontWeight: FontWeight.w900,color: Colors.white),
       brightness: Brightness.dark,
       disabledColor: Colors.grey,
       labelPadding: EdgeInsets.all(0.0),

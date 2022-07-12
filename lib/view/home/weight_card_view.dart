@@ -17,12 +17,17 @@ class WeightCardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Weight (Kg)',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor),
-                ),
+                Selector<BmiProvider, bool>(
+                    selector: (p0, p1) => p1.bmi.weight.isKg,
+                    shouldRebuild: (p, c) => p != c,
+                    builder: (context, data, _) {
+                      return Text(
+                        'Weight (${data?"kg":"lbs"})',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: Theme.of(context).accentColor),
+                      );
+                    }),
                 Selector<BmiProvider, int>(
                     selector: (p0, p1) => p1.bmi.weight.weight,
                     shouldRebuild: (p, c) => p != c,

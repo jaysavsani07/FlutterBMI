@@ -109,6 +109,12 @@ class BmiProvider with ChangeNotifier {
     loopActive = false;
   }
 
+  Future<void> changeWeightUnit(bool isKg) async {
+    bmi = bmi.copyWith(weight: bmi.weight.copyWith(isKg: isKg));
+    notifyListeners();
+    await sharedPreferencesHelper.putBool(Preferences.isKg, isKg);
+  }
+
   Future<void> changeHeightUnit(bool isCm) async {
     bmi = bmi.copyWith(height: bmi.height.copyWith(isCm: isCm));
     notifyListeners();
