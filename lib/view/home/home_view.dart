@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/data/model/bmi.dart';
 import 'package:bmi_calculator/utility/bmi_util.dart';
-import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:bmi_calculator/view/home/age_card_view.dart';
 import 'package:bmi_calculator/view/home/calculate_button_view.dart';
 import 'package:bmi_calculator/view/home/gender_card_view.dart';
@@ -9,6 +9,7 @@ import 'package:bmi_calculator/view/home/weight_card_view.dart';
 import 'package:bmi_calculator/view/result/result_view.dart';
 import 'package:bmi_calculator/view/common/size_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class HomeView extends StatelessWidget {
         ),
         CalculateButtonView(
           onTab: () {
-            Bmi bmi = InheritedBmiWrapper.of(context).bmi;
+            Bmi bmi = context.read<BmiProvider>().bmi;
             BmiUtil calc;
             if (bmi.height.isCm) {
               calc =

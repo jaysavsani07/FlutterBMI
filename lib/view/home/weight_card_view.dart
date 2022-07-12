@@ -1,13 +1,11 @@
-import 'package:bmi_calculator/data/model/bmi.dart';
-import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class WeightCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Bmi bmi = InheritedBmiWrapper.of(context).bmi;
-
     return Card(
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -25,13 +23,18 @@ class WeightCardView extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                       color: Theme.of(context).accentColor),
                 ),
-                Text(
-                  bmi.weight.weight.toString(),
-                  style: TextStyle(
-                      fontSize: 60.0,
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor),
-                ),
+                Selector<BmiProvider, int>(
+                    selector: (p0, p1) => p1.bmi.weight.weight,
+                    shouldRebuild: (p, c) => p != c,
+                    builder: (context, data, _) {
+                      return Text(
+                        data.toString(),
+                        style: TextStyle(
+                            fontSize: 60.0,
+                            fontWeight: FontWeight.w900,
+                            color: Theme.of(context).accentColor),
+                      );
+                    }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -45,17 +48,16 @@ class WeightCardView extends StatelessWidget {
                             color: Theme.of(context).iconTheme.color,
                           ),
                           onPressed: () {
-                            InheritedBmiWrapper.of(context)
-                                .changeWeightValue(-1);
+                            context.read<BmiProvider>().changeWeightValue(-1);
                           },
                         ),
                       ),
                       onLongPressStart: (details) {
-                        InheritedBmiWrapper.of(context).setButtonPress(true);
-                        InheritedBmiWrapper.of(context).decreaseWeight();
+                        context.read<BmiProvider>().setButtonPress(true);
+                        context.read<BmiProvider>().decreaseWeight();
                       },
                       onLongPressUp: () {
-                        InheritedBmiWrapper.of(context).setButtonPress(false);
+                        context.read<BmiProvider>().setButtonPress(false);
                       },
                     ),
                     GestureDetector(
@@ -68,17 +70,16 @@ class WeightCardView extends StatelessWidget {
                             color: Theme.of(context).iconTheme.color,
                           ),
                           onPressed: () {
-                            InheritedBmiWrapper.of(context)
-                                .changeWeightValue(1);
+                            context.read<BmiProvider>().changeWeightValue(1);
                           },
                         ),
                       ),
                       onLongPressStart: (details) {
-                        InheritedBmiWrapper.of(context).setButtonPress(true);
-                        InheritedBmiWrapper.of(context).increaseWeight();
+                        context.read<BmiProvider>().setButtonPress(true);
+                        context.read<BmiProvider>().increaseWeight();
                       },
                       onLongPressUp: () {
-                        InheritedBmiWrapper.of(context).setButtonPress(false);
+                        context.read<BmiProvider>().setButtonPress(false);
                       },
                     )
                   ],

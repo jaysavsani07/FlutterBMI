@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/core/constants.dart';
-import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GenderCardView extends StatelessWidget {
   @override
@@ -65,17 +66,22 @@ class GenderSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    InheritedBmiWrapperState state = InheritedBmiWrapper.of(context);
-    return Switch(
-      value: state.bmi.gender == Gender.Male,
-      onChanged: (value) {
-        InheritedBmiWrapper.of(context)
-            .changeGender(value ? Gender.Male : Gender.Female);
-      },
-      inactiveTrackColor: Colors.grey.shade300,
-      inactiveThumbColor: Colors.deepPurple,
-      activeTrackColor: Colors.grey.shade300,
-      activeColor: Colors.deepPurple,
-    );
+    return Selector<BmiProvider, Gender>(
+        selector: (p0, p1) => p1.bmi.gender,
+        shouldRebuild: (p, c) => p != c,
+        builder: (context, data, _) {
+          return Switch(
+            value: data == Gender.Male,
+            onChanged: (value) {
+              context
+                  .read<BmiProvider>()
+                  .changeGender(value ? Gender.Male : Gender.Female);
+            },
+            inactiveTrackColor: Colors.grey.shade300,
+            inactiveThumbColor: Colors.deepPurple,
+            activeTrackColor: Colors.grey.shade300,
+            activeColor: Colors.deepPurple,
+          );
+        });
   }
 }
