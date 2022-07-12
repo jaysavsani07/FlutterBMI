@@ -65,6 +65,7 @@ class _SplashState extends State<Splash> {
                   animatedTexts: [
                     TyperAnimatedText(
                       "BMI.",
+                      speed: Duration(milliseconds: 400),
                       textStyle: TextStyle(
                         color: Colors.green.shade200,
                         fontSize: 100.0,
