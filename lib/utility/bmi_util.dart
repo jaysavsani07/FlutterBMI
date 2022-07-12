@@ -13,6 +13,11 @@ class BmiUtil {
     required this.weight,
   });
 
+  static int feetInchToCM(int feet, int inch) {
+    int totalInch = ((feet * 12) + inch);
+    return (totalInch * 2.54).round();
+  }
+
   String calculateBMI() {
     _bmi = weight / pow(height / 100, 2);
     return _bmi.toStringAsFixed(1);

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bmi_calculator/view/common/size_transition.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../dashboard/dashboard_view.dart';

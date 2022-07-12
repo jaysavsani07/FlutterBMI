@@ -1,47 +1,13 @@
-import 'package:bmi_calculator/core/globals.dart';
+import 'package:bmi_calculator/data/model/bmi.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class AgeCardView extends StatefulWidget {
-  @override
-  _AgeCardViewState createState() => _AgeCardViewState();
-}
-
-class _AgeCardViewState extends State<AgeCardView> {
-  void decreaseAge() async {
-    if (loopActive) return;
-
-    loopActive = true;
-
-    while (buttonPressed) {
-      setState(() {
-        if (age > 1) {
-          age--;
-        } else {}
-      });
-      await Future.delayed(Duration(milliseconds: 100));
-      decreaseAge();
-    }
-    loopActive = false;
-  }
-
-  void increaseAge() async {
-    if (loopActive) return;
-
-    loopActive = true;
-
-    while (buttonPressed) {
-      setState(() {
-        age++;
-      });
-      await Future.delayed(Duration(milliseconds: 100));
-      increaseAge();
-    }
-    loopActive = false;
-  }
-
+class AgeCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Bmi bmi = InheritedBmiWrapper.of(context).bmi;
+
     return Card(
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -60,7 +26,7 @@ class _AgeCardViewState extends State<AgeCardView> {
                     color: Theme.of(context).accentColor),
               ),
               Text(
-                age.toString(),
+                bmi.age.toString(),
                 style: TextStyle(
                     fontSize: 60.0,
                     fontWeight: FontWeight.w900,
@@ -80,20 +46,16 @@ class _AgeCardViewState extends State<AgeCardView> {
                           color: Theme.of(context).iconTheme.color,
                         ),
                         onPressed: () {
-                          setState(() {
-                            if (age > 1) {
-                              age--;
-                            }
-                          });
+                          InheritedBmiWrapper.of(context).changeAgeValue(-1);
                         },
                       ),
                     ),
                     onLongPressStart: (details) {
-                      buttonPressed = true;
-                      decreaseAge();
+                      InheritedBmiWrapper.of(context).setButtonPress(true);
+                      InheritedBmiWrapper.of(context).decreaseAge();
                     },
                     onLongPressUp: () {
-                      buttonPressed = false;
+                      InheritedBmiWrapper.of(context).setButtonPress(false);
                     },
                   ),
                   GestureDetector(
@@ -106,18 +68,16 @@ class _AgeCardViewState extends State<AgeCardView> {
                           color: Theme.of(context).iconTheme.color,
                         ),
                         onPressed: () {
-                          setState(() {
-                            age++;
-                          });
+                          InheritedBmiWrapper.of(context).changeAgeValue(1);
                         },
                       ),
                     ),
                     onLongPressStart: (details) {
-                      buttonPressed = true;
-                      increaseAge();
+                      InheritedBmiWrapper.of(context).setButtonPress(true);
+                      InheritedBmiWrapper.of(context).increaseAge();
                     },
                     onLongPressUp: () {
-                      buttonPressed = false;
+                      InheritedBmiWrapper.of(context).setButtonPress(false);
                     },
                   )
                 ],

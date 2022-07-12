@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/core/globals.dart';
 import 'package:bmi_calculator/utility/app_util.dart';
 import 'package:bmi_calculator/view/common/single_choice_chips.dart';
 import 'package:bmi_calculator/view/setting/theme_change_switch.dart';
@@ -47,7 +46,7 @@ class SettingView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      themeLabel,
+                      "Dark Mode",
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
                           fontSize: 16.0,
@@ -82,7 +81,7 @@ class SettingView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        MultiSelectChip(AppUtil.measurementUnitList),
+                        MultiSelectChip(list: AppUtil.measurementUnitList),
                       ],
                     ),
                   ],

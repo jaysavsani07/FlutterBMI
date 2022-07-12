@@ -1,12 +1,8 @@
-import 'package:bmi_calculator/core/globals.dart';
+import 'package:bmi_calculator/core/constants.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
 import 'package:flutter/material.dart';
 
-class GenderCardView extends StatefulWidget {
-  @override
-  _GenderCardViewState createState() => _GenderCardViewState();
-}
-
-class _GenderCardViewState extends State<GenderCardView> {
+class GenderCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,18 +42,7 @@ class _GenderCardViewState extends State<GenderCardView> {
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                    inactiveTrackColor: Colors.grey.shade300,
-                    inactiveThumbColor: Colors.deepPurple,
-                    activeTrackColor: Colors.grey.shade300,
-                    activeColor: Colors.deepPurple,
-                  ),
+                  GenderSwitch(),
                   Text(
                     'Male',
                     style: TextStyle(
@@ -71,6 +56,26 @@ class _GenderCardViewState extends State<GenderCardView> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class GenderSwitch extends StatelessWidget {
+  const GenderSwitch({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    InheritedBmiWrapperState state = InheritedBmiWrapper.of(context);
+    return Switch(
+      value: state.bmi.gender == Gender.Male,
+      onChanged: (value) {
+        InheritedBmiWrapper.of(context)
+            .changeGender(value ? Gender.Male : Gender.Female);
+      },
+      inactiveTrackColor: Colors.grey.shade300,
+      inactiveThumbColor: Colors.deepPurple,
+      activeTrackColor: Colors.grey.shade300,
+      activeColor: Colors.deepPurple,
     );
   }
 }

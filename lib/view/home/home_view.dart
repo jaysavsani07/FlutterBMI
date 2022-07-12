@@ -1,25 +1,20 @@
+import 'package:bmi_calculator/data/model/bmi.dart';
+import 'package:bmi_calculator/utility/bmi_util.dart';
+import 'package:bmi_calculator/view/dashboard/bmi_controller.dart';
 import 'package:bmi_calculator/view/home/age_card_view.dart';
 import 'package:bmi_calculator/view/home/calculate_button_view.dart';
 import 'package:bmi_calculator/view/home/gender_card_view.dart';
 import 'package:bmi_calculator/view/home/height_card_view.dart';
 import 'package:bmi_calculator/view/home/weight_card_view.dart';
 import 'package:bmi_calculator/view/result/result_view.dart';
-import 'package:bmi_calculator/utility/app_util.dart';
 import 'package:bmi_calculator/view/common/size_transition.dart';
 import 'package:flutter/material.dart';
-import '../../utility/bmi_util.dart';
-import 'package:bmi_calculator/core/globals.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (selectedChoice == "Centimetre")
-      isCentSelected = false;
-    else
-      isCentSelected = true;
-
     return Column(
       children: <Widget>[
         Expanded(
@@ -43,13 +38,16 @@ class HomeView extends StatelessWidget {
         ),
         CalculateButtonView(
           onTab: () {
+            Bmi bmi = InheritedBmiWrapper.of(context).bmi;
             BmiUtil calc;
-            if (!isCentSelected)
-              calc = BmiUtil(height: heightCal, weight: weight);
-            else {
+            if (bmi.height.isCm) {
+              calc =
+                  BmiUtil(height: bmi.height.height, weight: bmi.weight.weight);
+            } else {
               calc = BmiUtil(
-                  height: AppUtil.feetInchToCM(feetValue, inchValue),
-                  weight: weight);
+                  height:
+                      BmiUtil.feetInchToCM(bmi.height.feet, bmi.height.inch),
+                  weight: bmi.weight.weight);
             }
             Navigator.push(
               context,

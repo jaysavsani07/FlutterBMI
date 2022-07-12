@@ -7,10 +7,14 @@ const Color kActiveCardColor = Color(0xFF1D1E33);
 const Color kInactiveCardColor = Color(0xFF111328);
 String platformVersion = "";
 
-enum GenderEnum {
+enum Gender {
   Male,
   Female,
 }
+
+String aboutBMI =
+    "Body Mass Index(BMI) is value derived from person's weight and height." +
+        "The result of BMI measurement can give an idea about weather a person has correct weight for their height.";
 
 Icon themeIcon = Icon(
   FontAwesomeIcons.solidMoon,

@@ -1,8 +1,6 @@
-import 'package:bmi_calculator/core/globals.dart' as prefix0;
+import 'package:bmi_calculator/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:launch_review/launch_review.dart';
-
-import '../../core/constants.dart';
 
 class AboutUsView extends StatelessWidget {
   @override
@@ -73,7 +71,7 @@ class AboutUsView extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(5.0, 10.0, 20.0, 0.0),
                     child: Text(
-                      prefix0.aboutBMI,
+                      aboutBMI,
                       style: TextStyle(fontSize: 14.0),
                       textAlign: TextAlign.justify,
                     ),
