@@ -1,7 +1,8 @@
+import 'package:bmi_calculator/view/app/theme_provider.dart';
 import 'package:bmi_calculator/view/splash/splash.dart';
 import 'package:bmi_calculator/core/app_theme.dart';
-import 'package:bmi_calculator/view/app/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -10,13 +11,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BMI',
-      debugShowCheckedModeBanner: false,
-      themeMode: InheritedThemeWrapper.of(context).themeMode,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkerTheme,
-      home: Splash(),
+    return Consumer<ThemeProvider>(
+      builder: (context, data, child) {
+        return MaterialApp(
+          title: 'BMI',
+          debugShowCheckedModeBanner: false,
+          themeMode: data.themeMode,
+          theme: AppTheme.lightTheme(),
+          darkTheme: AppTheme.darkTheme(),
+          home: Splash(),
+        );
+      },
     );
   }
 }
