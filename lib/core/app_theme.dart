@@ -40,6 +40,9 @@ class AppTheme {
           fontWeight: FontWeight.w900,
         ),
       ),
+      dialogTheme: base.dialogTheme.copyWith(
+        backgroundColor: Colors.white,
+      ),
       chipTheme: ChipThemeData(
         selectedColor: Colors.deepPurple,
         backgroundColor: Color.fromRGBO(237, 231, 246, 1),
@@ -98,6 +101,9 @@ class AppTheme {
           fontSize: 16.0,
           fontWeight: FontWeight.w900,
         ),
+      ),
+      dialogTheme: base.dialogTheme.copyWith(
+        backgroundColor: Colors.black87,
       ),
       chipTheme: ChipThemeData(
         selectedColor: Colors.deepPurple,

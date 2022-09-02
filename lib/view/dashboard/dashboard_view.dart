@@ -1,19 +1,66 @@
+import 'package:bmi_calculator/data/repository/local_repository.dart';
+import 'package:bmi_calculator/extension/datetime_extension.dart';
+import 'package:bmi_calculator/utility/app_util.dart';
 import 'package:bmi_calculator/view/about/about.dart';
+import 'package:bmi_calculator/view/common/size_transition.dart';
 import 'package:bmi_calculator/view/dashboard/drawer_footer_view.dart';
 import 'package:bmi_calculator/view/dashboard/drawer_header_view.dart';
+import 'package:bmi_calculator/view/dashboard/theme_icon_button.dart';
 import 'package:bmi_calculator/view/home/home_view.dart';
 import 'package:bmi_calculator/view/setting/setting_view.dart';
-import 'package:bmi_calculator/utility/app_util.dart';
-import 'package:bmi_calculator/view/common/size_transition.dart';
-import 'package:bmi_calculator/view/dashboard/theme_icon_button.dart';
 import 'package:drawerbehavior/drawer_scaffold.dart';
 import 'package:drawerbehavior/menu_screen.dart' as m;
 import 'package:flutter/material.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DashboardView extends StatelessWidget {
+import '../common/common_alert_dialog.dart';
+import '../common/rate_dialog.dart';
+
+class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardView> createState() => _DashboardViewState();
+}
+
+class _DashboardViewState extends State<DashboardView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      LocalRepository localRepository = context.read<LocalRepository>();
+
+      await localRepository.increaseAppOpenCount();
+      if (localRepository.getFirstTime()) {
+        await localRepository.saveIsFirstTime();
+        await localRepository.setFirstTimeDate();
+      } else if (!localRepository.isRemindOrRated()) {
+        DateTime dateTime = localRepository.getFirstTimeDate();
+        if (DateTime.now()
+                    .getDateOnly()
+                    .difference(dateTime.getDateOnly())
+                    .inDays >
+                1 &&
+            localRepository.getAppOpenCount() > 2) {
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => const CommonAlertDialog(child: RateDialog()),
+          ).then((value) async {
+            if (value != null) {
+              if (value) {
+                await localRepository.rated();
+              } else {
+                await localRepository.remindMeLater();
+              }
+            }
+          });
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

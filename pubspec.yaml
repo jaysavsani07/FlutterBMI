@@ -4,7 +4,7 @@ description: A new Flutter project.
 version: 1.0.2+5
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -20,6 +20,10 @@ dependencies:
   package_info_plus: ^1.4.2
   cupertino_icons: ^1.0.5
   provider: ^6.0.3
+
+  firebase_core: ^1.18.0
+  firebase_analytics: ^9.1.10
+  firebase_crashlytics: ^2.8.2
 
 dev_dependencies:
   # flutter_test:
