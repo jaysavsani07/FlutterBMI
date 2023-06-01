@@ -20,7 +20,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Fenil-Nividata/FlutterBMI/blob/master/">
-    <img src="ic_launcher.png">
+    <img src="https://github.com/jaysavsani07/FlutterBMI/blob/master/ic_launcher.png">
   </a>
 
   <h3 align="center">BMI Calculator</h3>
