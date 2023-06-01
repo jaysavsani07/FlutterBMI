@@ -6,17 +6,15 @@ class AppTheme {
 
     TextTheme _buildTextThemeLight(TextTheme textTheme) {
       return textTheme.copyWith(
-        subtitle2: textTheme.subtitle2!.copyWith(
+        titleSmall: textTheme.titleSmall!.copyWith(
             color: Color.fromRGBO(86, 81, 104, 1), fontWeight: FontWeight.w900),
-        caption: textTheme.caption!.copyWith(color: Color(0xFF8D8E98)),
+        bodySmall: textTheme.bodySmall!.copyWith(color: Color(0xFF8D8E98)),
       );
     }
 
     return base.copyWith(
       primaryColor: Colors.white,
       primaryColorDark: Colors.white,
-      buttonColor: Colors.grey.shade200,
-      accentColor: Color.fromRGBO(86, 81, 104, 1),
       brightness: Brightness.light,
       iconTheme: IconThemeData(color: Colors.deepPurple),
       textTheme: _buildTextThemeLight(base.textTheme),
@@ -67,17 +65,15 @@ class AppTheme {
 
     TextTheme _buildTextThemeLight(TextTheme textTheme) {
       return textTheme.copyWith(
-        subtitle2: textTheme.subtitle2!
+        titleSmall: textTheme.titleSmall!
             .copyWith(color: Colors.white60, fontWeight: FontWeight.w900),
-        caption: textTheme.caption!.copyWith(color: Color(0xFF8D8E98)),
+        bodySmall: textTheme.bodySmall!.copyWith(color: Color(0xFF8D8E98)),
       );
     }
 
     return base.copyWith(
       primaryColor: Colors.black,
       primaryColorDark: Colors.black87,
-      buttonColor: Colors.grey.shade700,
-      accentColor: Colors.white60,
       brightness: Brightness.dark,
       cardColor: Colors.grey.shade800,
       iconTheme: IconThemeData(color: Colors.grey.shade300),

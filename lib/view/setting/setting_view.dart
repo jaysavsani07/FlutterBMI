@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/color_scheme.dart';
 import 'package:bmi_calculator/utility/app_util.dart';
 import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:bmi_calculator/view/setting/theme_change_switch.dart';
@@ -49,7 +50,7 @@ class SettingView extends StatelessWidget {
                     Text(
                       "Dark Mode",
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.accentColor,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w800),
                     ),
@@ -74,7 +75,7 @@ class SettingView extends StatelessWidget {
                     Text(
                       "Unit of Measurement",
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.accentColor,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w800),
                     ),
@@ -143,7 +144,7 @@ class SettingView extends StatelessWidget {
                     Text(
                       "Unit of Weight",
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.accentColor,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w800),
                     ),

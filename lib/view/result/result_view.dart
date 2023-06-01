@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/color_scheme.dart';
 import 'package:bmi_calculator/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,7 +55,7 @@ class ResultView extends StatelessWidget {
                                 TextSpan(
                                     text: bmiResult.split(".")[0].toString(),
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context).colorScheme.accentColor,
                                       fontSize: 100.0,
                                       fontWeight: FontWeight.bold,
                                     )),
@@ -87,7 +88,7 @@ class ResultView extends StatelessWidget {
                         interpretation,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.accentColor,
                             fontWeight: FontWeight.w700),
                       ),
                     ),

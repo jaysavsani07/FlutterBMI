@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/color_scheme.dart';
 import 'package:bmi_calculator/core/constants.dart';
 import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:bmi_calculator/view/home/height_unit_switch.dart';
@@ -75,7 +76,7 @@ class HeightView extends StatelessWidget {
               'Height',
               style: TextStyle(
                   fontWeight: FontWeight.w900,
-                  color: Theme.of(context).accentColor),
+                  color: Theme.of(context).colorScheme.accentColor),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,12 +91,12 @@ class HeightView extends StatelessWidget {
                         data.toString(),
                         style: Theme.of(context)
                             .textTheme
-                            .subtitle2!
+                            .titleSmall!
                             .copyWith(
                           fontSize: 50,
                         ),
                         // style: TextStyle(
-                        //   color: Theme.of(context).accentColor,
+                        //   color: Theme.of(context).colorScheme.accentColor,
                         //   fontSize: 50.0,
                         //   fontWeight: FontWeight.w900,
                         // ),
@@ -146,7 +147,7 @@ class HeightView extends StatelessWidget {
               'Height\n',
               style: TextStyle(
                   fontWeight: FontWeight.w900,
-                  color: Theme.of(context).accentColor),
+                  color: Theme.of(context).colorScheme.accentColor),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,7 +157,7 @@ class HeightView extends StatelessWidget {
                   height: 90.0,
                   padding: EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).buttonColor,
+                    color: Theme.of(context).colorScheme.buttonColor,
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Selector<BmiProvider, int>(
@@ -177,7 +178,7 @@ class HeightView extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 40.0,
                               fontWeight: FontWeight.w900,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.accentColor),
                           underline: Container(
                             color: Colors.transparent,
                           ),
@@ -213,7 +214,7 @@ class HeightView extends StatelessWidget {
                   height: 90.0,
                   padding: EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).buttonColor,
+                    color: Theme.of(context).colorScheme.buttonColor,
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Selector<BmiProvider, int>(
@@ -233,7 +234,7 @@ class HeightView extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 45.0,
                               fontWeight: FontWeight.w900,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.accentColor),
                           underline: Container(
                             color: Colors.transparent,
                           ),

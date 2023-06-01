@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/color_scheme.dart';
 import 'package:bmi_calculator/core/constants.dart';
 import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class GenderCardView extends StatelessWidget {
                 'Gender',
                 style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.accentColor),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,14 +34,14 @@ class GenderCardView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 60.0,
                       fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.accentColor,
                     ),
                   ),
                   Text(
                     'Female',
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.accentColor,
                     ),
                   ),
                   GenderSwitch(),
@@ -48,7 +49,7 @@ class GenderCardView extends StatelessWidget {
                     'Male',
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.accentColor,
                     ),
                   ),
                 ],

@@ -5,7 +5,7 @@ class AnimatedLoader extends AnimatedWidget {
 
   AnimatedLoader({
     Key? key,
-    this.alignment: FractionalOffset.center,
+    this.alignment = FractionalOffset.center,
     required this.animation,
     required this.child,
   }) : super(key: key, listenable: animation);
@@ -16,7 +16,7 @@ class AnimatedLoader extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Opacity(
+    return Opacity(
       opacity: _opacityTween.evaluate(animation),
       child: child,
     );

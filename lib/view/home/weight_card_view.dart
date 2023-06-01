@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/color_scheme.dart';
 import 'package:bmi_calculator/view/dashboard/bmi_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +24,7 @@ class WeightCardView extends StatelessWidget {
                     'Weight (${data?"kg":"lbs"})',
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.accentColor),
                   );
                 }),
             Selector<BmiProvider, int>(
@@ -35,7 +36,7 @@ class WeightCardView extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 60.0,
                         fontWeight: FontWeight.w900,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.accentColor),
                   );
                 }),
             Row(
@@ -44,7 +45,7 @@ class WeightCardView extends StatelessWidget {
                 GestureDetector(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundColor: Theme.of(context).buttonColor,
+                    backgroundColor: Theme.of(context).colorScheme.buttonColor,
                     child: IconButton(
                       icon: Icon(
                         FontAwesomeIcons.minus,
@@ -66,7 +67,7 @@ class WeightCardView extends StatelessWidget {
                 GestureDetector(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundColor: Theme.of(context).buttonColor,
+                    backgroundColor: Theme.of(context).colorScheme.buttonColor,
                     child: IconButton(
                       icon: Icon(
                         FontAwesomeIcons.plus,

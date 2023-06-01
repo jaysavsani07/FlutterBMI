@@ -4,37 +4,34 @@ description: A new Flutter project.
 version: 1.0.2+5
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.0.1 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   
-  font_awesome_flutter: ^10.1.0
+  font_awesome_flutter: ^10.4.0
   animated_text_kit: ^4.2.2
-  shared_preferences: ^2.0.15
-  drawerbehavior: ^2.2.2
-  share_plus: ^4.0.10
+  shared_preferences: ^2.1.1
+  share_plus: ^7.0.2
   launch_review: ^3.0.1
-  url_launcher: ^6.1.4
-  package_info_plus: ^1.4.2
+  url_launcher: ^6.1.11
+  package_info_plus: ^4.0.2
   cupertino_icons: ^1.0.5
-  provider: ^6.0.3
+  provider: ^6.0.5
 
-  firebase_core: ^1.18.0
-  firebase_analytics: ^9.1.10
-  firebase_crashlytics: ^2.8.2
+  firebase_core: ^2.4.1
+  firebase_crashlytics: ^3.0.11
+  firebase_analytics: ^10.1.0
 
 dev_dependencies:
-  # flutter_test:
-  #   sdk: flutterAlignmentGeometry
-
-  flutter_launcher_icons: "^0.7.0"
+  flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
   image_path: "Assets/Images/ic_launcher.png" 
   android: true
   ios: true
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true

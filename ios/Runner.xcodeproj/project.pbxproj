@@ -16,6 +16,7 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		B394687D2359F14E00CF35D6 /* BmiCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394687C2359F14E00CF35D6 /* BmiCalculator.swift */; };
+		BF16BC38A0F2B8B490B2B7AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC45CEE3CFA0530257CC9BE9 /* GoogleService-Info.plist */; };
 		D443C9F0B20E37AC1157E803 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7A8A9D35C3C77C3876AF7C /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		9DE45F4B5E72A793FE02A5F6 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		B394687B2359F14D00CF35D6 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		B394687C2359F14E00CF35D6 /* BmiCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiCalculator.swift; sourceTree = "<group>"; };
+		BC45CEE3CFA0530257CC9BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C805758C8675C99D0F5E9948 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 				B394687B2359F14D00CF35D6 /* Runner-Bridging-Header.h */,
 				BB36591A31A71724DC927C80 /* Pods */,
 				854B961B5F367D7B8697FC1F /* Frameworks */,
+				BC45CEE3CFA0530257CC9BE9 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +213,7 @@
 				9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				BF16BC38A0F2B8B490B2B7AD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

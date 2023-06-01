@@ -23,13 +23,13 @@ class RateDialog extends StatelessWidget {
             "Rate BMI App",
             textAlign: TextAlign.center,
             style:
-                Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20),
+                Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 20),
           ),
           const SizedBox(height: 8),
           Text(
             "Tap a star to give your rating.",
             textAlign: TextAlign.justify,
-            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.normal,
                 ),
           ),
@@ -68,7 +68,7 @@ class RateDialog extends StatelessWidget {
               Image(
                 image: AssetImage("Assets/Images/star_unfill.png"),
                 filterQuality: FilterQuality.high,
-                color: Theme.of(context).textTheme.subtitle2!.color,
+                color: Theme.of(context).textTheme.titleSmall!.color,
                 width: 26,
                 height: 26,
               ),
@@ -89,7 +89,7 @@ class RateDialog extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: Theme.of(context).textTheme.subtitle2!.color!,
+                      color: Theme.of(context).textTheme.titleSmall!.color!,
                     ),
                   ),
                   child: Row(
@@ -97,11 +97,11 @@ class RateDialog extends StatelessWidget {
                     children: [
                       Text(
                         "Not Now",
-                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color:
-                                  Theme.of(context).textTheme.subtitle2!.color,
+                                  Theme.of(context).textTheme.titleSmall!.color,
                             ),
                       ),
                     ],
@@ -135,7 +135,7 @@ class RateDialog extends StatelessWidget {
                     children: [
                       Text(
                         "Rate",
-                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               color: Colors.white,
